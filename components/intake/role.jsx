@@ -1,17 +1,17 @@
 import ShortText from '../shared/shortText';
 
-const Name = ({onClick}) => {
+const Role = ({onClick}) => {
   return (
     <>
       <ShortText
         onClick={onClick}
-        overline={`Let's get started`}
-        title={`What's your name?`}
+        overline='Oh Cool!'
+        title='What role are you applying for?'
         buttonText='Next'
-        name='userName'
+        name='role'
       />
     </>
   );
 };
 
-export default Name;
+export default Role;

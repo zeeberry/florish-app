@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 import {useState} from 'react';
-import Intro from '../components/intake/Intro';
-import Name from '../components/intake/Name';
+import Intro from '../components/intake/intro';
+import Name from '../components/intake/name';
+import InterviewDate from '../components/intake/interviewDate';
+import Company from '../components/intake/company';
+import Role from '../components/intake/role';
+import InterviewType from '../components/intake/interviewType';
+import Excitement from '../components/intake/excitement';
+import Nerves from '../components/intake/nerves';
+import Outro from '../components/intake/outro';
 
 const Title = styled.h1`
   font-size: 50px;
@@ -24,7 +31,14 @@ export default function Home() {
   const [page, setPage] = useState(0);
   const form = [
     Intro, 
-    Name
+    Name,
+    InterviewDate,
+    Company,
+    Role,
+    Excitement,
+    InterviewType,
+    Nerves,
+    Outro
   ];
   const Page = form[page];
 

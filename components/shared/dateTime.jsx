@@ -1,19 +1,24 @@
 import PropTypes from 'prop-types';
+import {useState} from 'react';
 
-const LongText = ({onClick, overline, title, buttonText, name}) => {
+const DateTime = ({onClick, overline, title, buttonText, name}) => {
+  const today = (new Date()).toISOString();
+  const [data, setData] = useState(today);;
   return (
     <>
       <p>{overline}</p>
       <h1>{title}</h1>
-      <textarea name={name} rows="4" cols="50"></textarea>
+      <input type='datetime-local'
+        name={name} value={data}
+        min={today} onChange={(e)=>setData(e.target.value)}/>
       <button onClick={onClick}>{buttonText}</button>
     </>
   );
-}
+};
 
-export default LongText;
+export default DateTime;
 
-LongText.propTypes = {
+DateTime.propTypes = {
   onClick: PropTypes.func,
   overline: PropTypes.string,
   title: PropTypes.string,
@@ -21,7 +26,7 @@ LongText.propTypes = {
   name: PropTypes.string
 };
 
-LongText.defaultProps = {
+DateTime.defaultProps = {
   onClick: () => {},
   overline: 'Overline',
   title: 'Title',
