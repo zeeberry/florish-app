@@ -20,8 +20,8 @@ Statement.propTypes = {
 };
 
 Statement.defaultProps = {
-  onClick: PropTypes.func,
-  overline: PropTypes.string, 
-  title: PropTypes.string,
-  buttonText: PropTypes.string
+  onClick: () => {},
+  overline: '', 
+  title: '',
+  buttonText: ''
 };

@@ -8,15 +8,14 @@ const MultipleChoice = ({onClick, overline, title, buttonText, name, options}) =
       <p>{overline}</p>
       <h1>{title}</h1>
       {options.map((option) =>
-        <>
+        <div key={option.toLowerCase()} >
           <input 
             type="radio" 
             id={option.toLowerCase()} 
             value={option.toLowerCase()} 
-            key={option.toLowerCase()} 
             name={name}/>
           <label htmlFor={option.toLowerCase()}>{option}</label>
-        </>
+        </div>
       )}
       <button onClick={onClick}>{buttonText}</button>
     </>
