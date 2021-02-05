@@ -25,7 +25,22 @@ const Main = styled.main`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-`
+`;
+
+const Header = styled.header`
+  padding: 1em 2em;
+`;
+
+const Logo = styled.div`
+  letter-spacing: 0.1em;
+`;
+
+const Footer = styled.footer`
+  padding: 1em 2em;
+  display: flex;
+  justify-content: center;
+  font-size: 0.8em;
+`;
 
 export default function Home() {
   const newUser = {
@@ -95,13 +110,13 @@ export default function Home() {
 
   return (
     <>
-      <header>Logo</header>
+      <Header><Logo>Florish</Logo></Header>
       <Main>
         <Content>
           <Page onClick={onClick} />
         </Content>
       </Main>
-      <footer>Made in NYC</footer>
+      <Footer>Made in NYC</Footer>
     </>
   );
 };
