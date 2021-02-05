@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import {useState} from 'react';
+import { useState } from 'react';
 import Intro from '../components/intake/intro';
 import Name from '../components/intake/name';
 import InterviewDate from '../components/intake/interviewDate';
@@ -10,37 +9,7 @@ import Excitement from '../components/intake/excitement';
 import Nerves from '../components/intake/nerves';
 import Contact from '../components/intake/contact';
 import Outro from '../components/intake/outro';
-
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
-`;
-
-const Content = styled.section`
-  width: 550px;
-`;
-
-const Main = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-`;
-
-const Header = styled.header`
-  padding: 1em 2em;
-`;
-
-const Logo = styled.div`
-  letter-spacing: 0.1em;
-`;
-
-const Footer = styled.footer`
-  padding: 1em 2em;
-  display: flex;
-  justify-content: center;
-  font-size: 0.8em;
-`;
+import { Content } from '../components/shared/elements';
 
 export default function Home() {
   const newUser = {
@@ -113,14 +82,8 @@ export default function Home() {
   };
 
   return (
-    <>
-      <Header><Logo>Florish</Logo></Header>
-      <Main>
-        <Content>
-          <Page onClick={onClick} />
-        </Content>
-      </Main>
-      <Footer>Made in NYC</Footer>
-    </>
+    <Content>
+      <Page onClick={onClick} />
+    </Content>
   );
 };
