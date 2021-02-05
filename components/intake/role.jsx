@@ -9,6 +9,7 @@ const Role = ({onClick}) => {
         title='What role are you applying for?'
         buttonText='Next'
         name='role'
+        collection='newApplication'
       />
     </>
   );

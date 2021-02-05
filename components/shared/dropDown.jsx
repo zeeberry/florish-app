@@ -1,18 +1,32 @@
 import PropTypes from 'prop-types';
 import {useState} from 'react';
 
-const DropDown = ({onClick, overline, title, buttonText, name, options}) => {
-  const [data, setData] = useState(0);
+const DropDown = ({onClick, overline, title, buttonText, name, options, collection}) => {
+  const [selected, setSelected] = useState(options[0]);
+
+  const onChange = (e) => {
+    setSelected(e.target.value);
+  };
+
+  const handleClick = () => {
+    const data = {
+      type: name,
+      value: selected,
+      collection
+    };
+    onClick(data);
+  };
+
   return (
     <>
       <p>{overline}</p>
       <h1>{title}</h1>
-      <select name={name}>
+      <select name={name} onChange={onChange} value={selected}>
         {options.map((option) =>
           <option value={option.toLowerCase()} key={option.toLowerCase()}>{option}</option>
         )}
       </select>
-      <button onClick={onClick}>{buttonText}</button>
+      <button onClick={handleClick}>{buttonText}</button>
     </>
   );
 };

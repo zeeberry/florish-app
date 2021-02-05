@@ -8,6 +8,7 @@ import Role from '../components/intake/role';
 import InterviewType from '../components/intake/interviewType';
 import Excitement from '../components/intake/excitement';
 import Nerves from '../components/intake/nerves';
+import Contact from '../components/intake/contact';
 import Outro from '../components/intake/outro';
 
 const Title = styled.h1`
@@ -16,19 +17,42 @@ const Title = styled.h1`
 `;
 
 const Content = styled.section`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  max-width: 550px;
+  width: 550px;
 `;
 
 const Main = styled.main`
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 `
 
 export default function Home() {
+  const newUser = {
+    id: '',
+    name: '',
+    email: ''
+  };
+  const newApplication = {
+    userId: '',
+    company: '',
+    role: '',
+    initialExcitement: '',
+    currentExcitement: ''
+  };
+  const newInterview = {
+    applicationId: '',
+    date: '',
+    type: '',
+    nerves: '',
+    notes: '',
+    excitement: '',
+  };
+
   const [page, setPage] = useState(0);
+  const [user, setUser] = useState(newUser);
+  const [application, setApplication] = useState(newApplication);
+  const [interview, setInterview] = useState(newInterview);
   const form = [
     Intro, 
     Name,
@@ -38,12 +62,32 @@ export default function Home() {
     Excitement,
     InterviewType,
     Nerves,
+    Contact,
     Outro
   ];
   const Page = form[page];
-
-  const onClick = () => {
+  
+  const onClick = (data) => {
     const nextPage = page + 1;
+    if (data.collection) {
+      console.log(data);
+      if (data.collection === 'newUser') {
+        const newState = Object.assign({}, user);
+        newState[data.type] = data.value;
+        setUser(newState);
+      }
+      if (data.collection === 'newApplication') {
+        const newState = Object.assign({}, application);
+        newState[data.type] = data.value;
+        setApplication(newState);
+      }
+      if (data.collection === 'newInterview') {
+        const newState = Object.assign({}, interview);
+        newState[data.type] = data.value;
+        setInterview(newState);
+      }
+    }
+
     if (form[nextPage]) {
       setPage(page + 1);
     }

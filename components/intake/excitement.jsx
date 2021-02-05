@@ -1,7 +1,7 @@
 import MultipleChoice from '../shared/multipleChoice';
 
 const Excitement = ({onClick}) => {
-  const options = ['Very','Somewhat', 'Meh', 'Not really', 'Not at all'];
+  const options = ['Not at all', 'Not really', 'Meh', 'Somewhat', 'Very'];
   const company = 'Florish';
   return (
     <>
@@ -11,7 +11,8 @@ const Excitement = ({onClick}) => {
         title={`How excited are you about working for ${company}`}
         options={options}
         buttonText='Next'
-        name='interviewType'
+        name='excitement'
+        collection='newInterview'
       />
     </>
   );

@@ -17,7 +17,8 @@ const InterviewType = ({onClick}) => {
         title='What kind of interview is it?'
         options={options}
         buttonText='Next'
-        name='interviewType'
+        name='type'
+        collection='newInterview'
       />
     </>
   );

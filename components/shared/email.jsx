@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import PropTypes from 'prop-types';
 
-const ShortText = ({onClick, overline, title, buttonText, name, collection}) => {
+const Email = ({onClick, overline, title, buttonText, name, collection}) => {
   const [text, setText] = useState('');
 
   const onChange = (e) => {
@@ -21,15 +21,15 @@ const ShortText = ({onClick, overline, title, buttonText, name, collection}) => 
     <>
       <p>{overline}</p>
       <h1>{title}</h1>
-      <input type='text' name={name} value={text} onChange={onChange}/>
+      <input type='email' name={name} value={text} onChange={onChange} required/>
       <button onClick={handleClick}>{buttonText}</button>
     </>
   );
 };
 
-export default ShortText;
+export default Email;
 
-ShortText.propTypes = {
+Email.propTypes = {
   onClick: PropTypes.func,
   overline: PropTypes.string,
   title: PropTypes.string,
@@ -38,7 +38,7 @@ ShortText.propTypes = {
   collection: PropTypes.string
 };
 
-ShortText.defaultProps = {
+Email.defaultProps = {
   onClick: () => {},
   overline: '',
   title: '',

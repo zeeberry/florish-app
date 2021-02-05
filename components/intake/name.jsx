@@ -8,7 +8,8 @@ const Name = ({onClick}) => {
         overline={`Let's get started`}
         title={`What's your name?`}
         buttonText='Next'
-        name='userName'
+        name='name'
+        collection='newUser'
       />
     </>
   );

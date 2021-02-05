@@ -9,6 +9,7 @@ const Company = ({onClick}) => {
         title='What company are you interviewing with?'
         buttonText='Next'
         name='company'
+        collection='newApplication'
       />
     </>
   );

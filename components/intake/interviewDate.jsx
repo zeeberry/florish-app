@@ -9,7 +9,8 @@ const InterviewDate = ({onClick}) => {
         overline={`Nice to meet you, ${name}`}
         title='When is your interview schedueled for?'
         buttonText='Next'
-        name='interviewDate'
+        name='date'
+        collection='newInterview'
       />
     </>
   );

@@ -6,6 +6,20 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
+  button {
+    padding: 1em 1.2em;
+    min-width: 6.25em;
+    display: block;
+    cursor: pointer;
+  }
+
+  input:not([type=radio]),
+  select {
+    padding: 1em 1.2em;
+    width: 100%;
+    box-sizing: border-box;
+  }
 `
 
 const theme = {

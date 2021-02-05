@@ -10,7 +10,8 @@ const Nerves = ({onClick}) => {
         title={`How nervous are you about this interview?`}
         options={options}
         buttonText='Next'
-        name='interviewType'
+        name='nerves'
+        collection='newInterview'
       />
     </>
   );

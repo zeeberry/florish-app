@@ -1,12 +1,27 @@
 import PropTypes from 'prop-types';
 
 const LongText = ({onClick, overline, title, buttonText, name}) => {
+  const [text, setText] = useState('');
+
+  const onChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleClick = () => {
+    const data = {
+      type: name,
+      value: text,
+      collection
+    };
+    onClick(data);
+  };
+
   return (
     <>
       <p>{overline}</p>
       <h1>{title}</h1>
-      <textarea name={name} rows="4" cols="50"></textarea>
-      <button onClick={onClick}>{buttonText}</button>
+      <textarea name={name} rows="4" cols="50" onChange={onChange} value={text}/>
+      <button onClick={handleClick}>{buttonText}</button>
     </>
   );
 }
