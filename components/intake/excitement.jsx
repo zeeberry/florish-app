@@ -11,8 +11,8 @@ const Excitement = ({onClick}) => {
         title={`How excited are you about working for ${company}`}
         options={options}
         buttonText='Next'
-        name='excitement'
-        collection='newInterview'
+        name='initialExcitement'
+        collection='newApplication'
       />
     </>
   );

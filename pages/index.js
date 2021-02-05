@@ -94,6 +94,10 @@ export default function Home() {
       if (data.collection === 'newApplication') {
         const newState = Object.assign({}, application);
         newState[data.type] = data.value;
+        if (data.type === 'initialExcitement') {
+          newState.currentExcitement = data.value;
+        }
+
         setApplication(newState);
       }
       if (data.collection === 'newInterview') {
