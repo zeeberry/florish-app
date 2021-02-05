@@ -8,6 +8,7 @@ const Outro = ({onClick}) => {
         overline={`It's ok to be nervous. You got this.`}
         title={`We'll checkin with you after your interview.`}
         buttonText='Ok!'
+        href='/dashboard'
       />
     </>
   );

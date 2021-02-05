@@ -1,17 +1,9 @@
 import PropTypes from 'prop-types';
 import {useState} from 'react';
 
-const DateTime = ({onClick, overline, title, buttonText, name, collection}) => {
+const DateTime = ({onClick, overline, title, buttonText, name}) => {
   const today = (new Date()).toISOString();
   const [date, setDate] = useState(today);;
-  const handleClick = () => {
-    const data = {
-      type: name,
-      value: date,
-      collection
-    };
-    onClick(data);
-  };
   return (
     <>
       <p>{overline}</p>
@@ -19,7 +11,7 @@ const DateTime = ({onClick, overline, title, buttonText, name, collection}) => {
       <input type='datetime-local'
         name={name} value={date}
         min={today} onChange={(e)=>setDate(e.target.value)}/>
-      <button onClick={handleClick}>{buttonText}</button>
+      <button onClick={()=>onClick(date)}>{buttonText}</button>
     </>
   );
 };
@@ -31,8 +23,7 @@ DateTime.propTypes = {
   overline: PropTypes.string,
   title: PropTypes.string,
   buttonText: PropTypes.string,
-  name: PropTypes.string,
-  collection: PropTypes.string
+  name: PropTypes.string
 };
 
 DateTime.defaultProps = {
@@ -40,6 +31,5 @@ DateTime.defaultProps = {
   overline: 'Overline',
   title: 'Title',
   buttonText: 'Button',
-  name: 'someInput',
-  collection: ''
+  name: 'someInput'
 };

@@ -1,20 +1,11 @@
 import PropTypes from 'prop-types';
-import {useState} from 'react';
+import { useState } from 'react';
 
-const MultipleChoice = ({onClick, overline, title, buttonText, name, options, collection}) => {
+const MultipleChoice = ({onClick, overline, title, buttonText, name, options}) => {
   const [selected, setSelected] = useState('');
   
   const onChange = (e) => {
     setSelected(e.target.value);
-  };
-
-  const handleClick = () => {
-    const data = {
-      type: name,
-      value: selected,
-      collection
-    };
-    onClick(data);
   };
 
   return (
@@ -34,7 +25,7 @@ const MultipleChoice = ({onClick, overline, title, buttonText, name, options, co
           <label htmlFor={option.toLowerCase()}>{option}</label>
         </div>
       )}
-      <button onClick={handleClick}>{buttonText}</button>
+      <button onClick={()=>onClick(selected)}>{buttonText}</button>
     </>
   );
 };
@@ -46,7 +37,6 @@ MultipleChoice.propTypes = {
   overline: PropTypes.string,
   title: PropTypes.string,
   buttonText: PropTypes.string,
-  collection: PropTypes.string,
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired
 };
@@ -55,6 +45,5 @@ MultipleChoice.defaultProps = {
   onClick: () => {},
   overline: 'Overline',
   title: 'Title',
-  buttonText: 'Button',
-  collection: ''
+  buttonText: 'Button'
 };

@@ -7,21 +7,12 @@ const LongText = ({onClick, overline, title, buttonText, name}) => {
     setText(e.target.value);
   };
 
-  const handleClick = () => {
-    const data = {
-      type: name,
-      value: text,
-      collection
-    };
-    onClick(data);
-  };
-
   return (
     <>
       <p>{overline}</p>
       <h1>{title}</h1>
       <textarea name={name} rows="4" cols="50" onChange={onChange} value={text}/>
-      <button onClick={handleClick}>{buttonText}</button>
+      <button onClick={()=>{onClick(text)}}>{buttonText}</button>
     </>
   );
 }
