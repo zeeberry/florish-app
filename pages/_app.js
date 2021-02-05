@@ -1,32 +1,6 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  button {
-    padding: 1em 1.2em;
-    min-width: 6.25em;
-    display: block;
-    cursor: pointer;
-  }
-
-  input:not([type=radio]),
-  select {
-    padding: 1em 1.2em;
-    width: 100%;
-    box-sizing: border-box;
-  }
-`
-
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-}
+import { ThemeProvider } from 'styled-components';
+import GlobalStyle from '../theme/globalStyle';
+import theme from '../theme/theme';
 
 export default function App({ Component, pageProps }) {
   return (
