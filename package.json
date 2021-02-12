@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "setup": "node ./scripts/setup.js"
   },
   "dependencies": {
     "next": "latest",
@@ -22,7 +23,10 @@
     "@storybook/addon-links": "^6.1.15",
     "@storybook/react": "^6.1.15",
     "babel-loader": "^8.2.2",
-    "babel-plugin-styled-components": "^1.8.0"
+    "babel-plugin-styled-components": "^1.8.0",
+    "faunadb": "2.11.1",
+    "request": "2.88.0",
+    "stream-to-promise": "2.2.0"
   },
   "license": "MIT"
 }
