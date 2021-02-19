@@ -13,28 +13,31 @@ function getErrorMessage(error, data) {
   return null
 }
 
-/**
-|--------------------------------------------------
-| This GraphQL query returns an array of Guestbook
-| entries complete with both the provided and implicit
-| data attributes.
-|
-| Learn more about GraphQL: https://graphql.org/learn/
-|--------------------------------------------------
-*/
-export const useGuestbookEntries = () => {
-  const query = `query Entries($size: Int) {
-    entries(_size: $size) {
+export const getProfileByEmail = (email) => {
+  const query = `query AccountByEmail($email: String!) {
+    accountByEmail(email: $email) {
       data {
         _id
         _ts
-        twitter_handle
-        story
+        email
+        profile {
+          name
+          applications {
+            data {
+              company
+              role
+              interviews {
+                data {
+                  type
+                }  
+              }
+            }
+          }
+        }
       }
       after
     }
   }`
-  const size = 100
   const { data, error } = useFetch(
     process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT,
     {
@@ -46,7 +49,7 @@ export const useGuestbookEntries = () => {
       },
       body: JSON.stringify({
         query,
-        variables: { size },
+        variables: { email },
       }),
     }
   )
@@ -58,60 +61,35 @@ export const useGuestbookEntries = () => {
   }
 }
 
-/**
-|--------------------------------------------------
-| This GraphQL mutation creates a new GuestbookEntry
-| with the requisite twitter handle and story arguments.
-|
-| It returns the stored data and includes the unique
-| identifier (_id) as well as _ts (time created).
-|
-| The guestbook uses the _id value as the unique key
-| and the _ts value to sort and display the date of
-| publication.
-|
-| Learn more about GraphQL mutations: https://graphql.org/learn/queries/#mutations
-|--------------------------------------------------
-*/
-export const createGuestbookEntry = async (twitterHandle, story) => {
-  const query = `mutation CreateGuestbookEntry($twitterHandle: String!, $story: String!) {
-    createGuestbookEntry(data: {
-      twitter_handle: $twitterHandle,
-      story: $story
-    }) {
-      _id
-      _ts
-      twitter_handle
-      story
-    }
-  }`
-
-  const res = await fetch(process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
-      'Content-type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({
-      query,
-      variables: { twitterHandle, story },
-    }),
-  })
-  const data = await res.json()
-
-  return data
-};
-
-export const createUser = async (name, email) => {
-  const query = `mutation CreateUser($userName: String!, $email: String!) {
-    createGuestbookEntry(data: {
-      name: $userName,
+export const createAccount = async (email, name, company, role, date, type, notes) => {
+  const query = `mutation CreateAccount($email: String!, $name: String!, $company: String!, $role: String!, $date: String!, $type: String!, $notes: String!) {
+    createAccount(data: {
       email: $email
+      profile: {
+        create: { 
+          name: $name
+          applications: {
+            create: {
+              company: $company  
+              role: $role
+              initialExcitement: 1
+              currentExcitment: 3 
+              interviews: {
+                create: {
+                  date: $date 
+                  type: $type
+                  nerves: 4 
+                  notes: $notes
+                  excitement: 2
+                }
+              }
+            }
+          }
+        }
+      }
     }) {
       _id
       _ts
-      name
       email
     }
   }`
@@ -125,7 +103,7 @@ export const createUser = async (name, email) => {
     },
     body: JSON.stringify({
       query,
-      variables: { name, email },
+      variables: { email, name, company, role, date, type, notes},
     }),
   })
   const data = await res.json()

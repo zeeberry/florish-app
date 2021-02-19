@@ -10,9 +10,13 @@ import Nerves from '../components/intake/nerves';
 import Contact from '../components/intake/contact';
 import Outro from '../components/intake/outro';
 import { Content } from '../components/shared/elements';
+import { createAccount } from '../graphql/api';
+import { useContext, useEffect } from 'react';
+import Context from '../store/context';
 
 export default function Home() {
   const [step, setStep] = useState(0);
+  const context = useContext(Context);
   const form = [
     Intro, 
     Name,
@@ -26,6 +30,24 @@ export default function Home() {
     Outro
   ];
   const FormStep = form[step];
+
+  useEffect(()=> {
+    if (step + 1 === form.length) {
+      const state = context.state;
+      const {name, email} = state.user;
+      const {company, role} = state.application;
+      const {date, type, notes} = state.interview;
+
+      createAccount(email, name, company, role, date, type, notes)
+        .then((data) => {
+          console.log(data.data);
+        })
+        .catch((error) => {
+          console.log(`boo :( ${error}`)
+          alert('🤷<200d>♀️')
+        });
+    }
+  }, [step]);
   
   const onClick = (data) => {
     const nextStep = step + 1;

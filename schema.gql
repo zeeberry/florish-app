@@ -4,11 +4,13 @@ type Account {
 }
 
 type Profile {
+  account: Account!
   name: String! 
   applications: [Application!] @relation
 }
 
 type Application {
+  profile: Profile!
   company: String!
   role: String!
   initialExcitement: Int  
@@ -17,6 +19,7 @@ type Application {
 }
 
 type Interview {
+  application: Application!
   date: String!
   type: String!
   nerves: Int
