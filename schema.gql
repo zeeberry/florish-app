@@ -1,0 +1,33 @@
+type Account {
+  email: String! @unique
+  profile: Profile! @relation
+}
+
+type Profile {
+  account: Account!
+  name: String! 
+  applications: [Application!] @relation
+}
+
+type Application {
+  profile: Profile!
+  company: String!
+  role: String!
+  initialExcitement: Int  
+  currentExcitment: Int
+  interviews: [Interview!] @relation
+}
+
+type Interview {
+  application: Application!
+  date: String!
+  type: String!
+  nerves: Int
+  notes: String!
+  excitement: Int
+}
+
+type Query {
+  accounts: [Account]
+  accountByEmail(email: String!): [Account!]
+}
