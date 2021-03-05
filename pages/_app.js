@@ -25,9 +25,9 @@ export default function App({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <Context.Provider value={{ state, dispatch }}>
           <Header><Logo>Florish</Logo></Header>
-            <Main>
-              <Component {...pageProps} />
-            </Main>
+          <Main>
+            <Component {...pageProps} />
+          </Main>
           <Footer>Made in NYC</Footer>
         </Context.Provider>
       </ThemeProvider>
