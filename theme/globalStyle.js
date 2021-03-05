@@ -25,6 +25,11 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     box-sizing: border-box;
   }
+
+  ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+  }
 `;
 
 export default GlobalStyle;
