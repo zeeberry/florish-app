@@ -7,22 +7,24 @@ const Item = styled.li`
   margin: 1em 0;
   font-size: 1.17em;
   font-weight: bold;
-  border-left: 3px solid ${(props) => props.selected ? 'white' : 'black'};
   cursor: pointer;
 `;
 
-export default function ApplicationListItem({label, selected}) {
+export default function InterviewListItem({label, selected}) {
   return (
-    <Item selected={selected}>{label}</Item>
+    <Item selected={selected}>
+      {label}
+      Monday, June 9th 2021 @ 9am
+    </Item>
   )
 };
 
-ApplicationListItem.propTypes = {
+InterviewListItem.propTypes = {
   label: PropTypes.string,
   selected: PropTypes.bool
 };
 
-ApplicationListItem.defaultProps = {
+InterviewListItem.defaultProps = {
   label: '',
   selected: false
 };

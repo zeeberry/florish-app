@@ -4,6 +4,8 @@ import { useContext } from 'react';
 import { getProfileByEmail } from '../graphql/api';
 import Context from '../store/context';
 import ApplicationList from '../components/dashboard/applicationList';
+import InterviewList from '../components/dashboard/interviewList';
+import InterviewOverview from '../components/dashboard/interviewOverview';
 
 const Content = styled.div`
   display: flex;
@@ -36,6 +38,8 @@ export default function Dashboard() {
   const [ profile, setProfile ] = useState([]);
   const { state } = useContext(Context);
   const applications = ['Nike', 'Stash'];
+  const selected = 'Nike';
+  const interviews = ['Recruiter Call', 'Technical Challenge'];
 
   useEffect(() => {
     if (!profile.length) {
@@ -45,55 +49,25 @@ export default function Dashboard() {
 
   return (
     <Content>
-      <ApplicationList applications={applications} />
-      <Application>
-        <nav>
-          <h4>Application</h4>
-          <div>Software Engineer @ Tall Poppy</div>
-          <div>
-            <div>INTERVIEWS</div>
-            <div><a href=''>+ Add Interview</a></div>
-          </div>
-          <ul>
-            <li>
-              <div>
-                <div>Recruiter call</div>
-                <div>Monday, June 9th 2021</div>
-              </div>
-            </li>
-            <li>
-              <div>
-                <div>Recruiter call</div>
-                <div>Monday, June 9th 2021</div>
-              </div>
-            </li>
-          </ul>
-        </nav>
-        <Interview>
-          <h2>Recruiter Call</h2>
-          <nav>
-            <ul>
-              <li>Guided Notes</li>
-              <li>Free Form Notes</li>
-              <li>The Feels</li>
-            </ul>
-          </nav>
-          <section>
-            {!data ? (
-                <p>Loading entries...</p>
-            ) : profile.map((entry, index, allEntries) => {
-                const date = new Date(entry._ts / 1000);
-                return (
-                  <p key={entry._id}>
-                    {entry.email}
-                  </p>
-                )
-              })
-            }
-            <div>{state.user.name}</div>
-          </section>
-        </Interview>
-      </Application>
+      <ApplicationList applications={applications} selected={selected}/>
+      <InterviewList interviews={interviews} company={selected} />
+      <InterviewOverview interview='Recruiter Call'/>
+      <Interview>
+        <section>
+          {!data ? (
+              <p>Loading entries...</p>
+          ) : profile.map((entry, index, allEntries) => {
+              const date = new Date(entry._ts / 1000);
+              return (
+                <p key={entry._id}>
+                  {entry.email}
+                </p>
+              )
+            })
+          }
+          <div>{state.user.name}</div>
+        </section>
+      </Interview>
     </Content>
   );
 };

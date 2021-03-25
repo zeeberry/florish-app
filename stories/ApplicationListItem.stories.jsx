@@ -15,3 +15,9 @@ Default.args = {
   selected: false
 };
 
+export const Selected = Template.bind({});
+Selected.args = {
+  label: 'Bitly',
+  selected: true
+};
+

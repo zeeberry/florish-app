@@ -9,18 +9,20 @@ const Section = styled.section`
   color: white;
   padding: 1em;
   min-height: 21em;
-  max-width: 15em;
+  width: 18em;
 `;
 
 const LinkWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
+  margin-top: 4em;
 `;
 
 const Link = styled.a`
   color: white;
   letter-spacing: 0.05em;
+  font-size: 0.9em;
 
   &:active {
     color: white;
@@ -39,12 +41,16 @@ const List = styled.ul`
 `;
 
 export default function ApplicationList({applications}) {
+
   return (
     <Section>
       <Header>Your Notes</Header>
       <List>
-        {applications.map((application)=> 
-          <ApplicationListItem key={application} label={application} />
+        {applications.map((application, index)=> 
+          <ApplicationListItem 
+            key={application} 
+            label={application} 
+            selected={index === 0} />
         )}
       </List>
       <LinkWrapper>
