@@ -1,4 +1,6 @@
 # Florish App
+![Vercel](https://vercelbadge.vercel.app/api/zeeberry/florish-app?style=flat-square)
+
 A tech-enabled job interview coaching platform for software engineers.
 
 ### Motivation
