@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useContext } from 'react';
 import { getProfileByEmail } from '../graphql/api';
 import Context from '../store/context';
+import ApplicationList from '../components/dashboard/applicationList';
 
 const Content = styled.div`
   display: flex;
@@ -34,6 +35,7 @@ export default function Dashboard() {
   const { data, errorMessage } = getProfileByEmail('zainab@florish.tech');
   const [ profile, setProfile ] = useState([]);
   const { state } = useContext(Context);
+  const applications = ['Nike', 'Stash'];
 
   useEffect(() => {
     if (!profile.length) {
@@ -43,24 +45,7 @@ export default function Dashboard() {
 
   return (
     <Content>
-      <Nav>
-        {!data ? (
-            <p>Loading entries...</p>
-        ) : profile.map((entry, index, allEntries) => {
-            const date = new Date(entry._ts / 1000);
-            return (
-              <p key={entry._id}>
-                {entry.email}
-              </p>
-            )
-          })
-        }
-        <div>{state.user.name}</div>
-        <ul>
-          <li><a href=''>Tall Poppy</a></li>
-          <li><a href=''>Bitly</a></li>
-        </ul>
-      </Nav>
+      <ApplicationList applications={applications} />
       <Application>
         <nav>
           <h4>Application</h4>
@@ -94,7 +79,18 @@ export default function Dashboard() {
             </ul>
           </nav>
           <section>
-            <div>There will be some notes here</div>
+            {!data ? (
+                <p>Loading entries...</p>
+            ) : profile.map((entry, index, allEntries) => {
+                const date = new Date(entry._ts / 1000);
+                return (
+                  <p key={entry._id}>
+                    {entry.email}
+                  </p>
+                )
+              })
+            }
+            <div>{state.user.name}</div>
           </section>
         </Interview>
       </Application>
