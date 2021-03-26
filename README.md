@@ -3,17 +3,17 @@
 
 A tech-enabled job interview coaching platform for software engineers.
 
-### Motivation
+## Motivation
 Interviewing for a software engineering job is initimidating, especially if you're just getting started. We created this tool to help folks realize their potential, ace their interviews and get dope ass jobs in tech.
 
-### Features
+## Features
 - Track your interview notes
 - Reflect on your interview experiences
 - Get insightful data about your interviews
 - Understand what to expect in every interview you have scheduled
 - Get expert-curated tips on how to best prepare for your interviews.
 
-### Tech Used
+## Tech Used
 - ReactJS
 - NextJS
 - FaunaDB
@@ -23,11 +23,11 @@ Interviewing for a software engineering job is initimidating, especially if you'
 - Storybook
 - Jest
 
-### Installation
-*Clone the repo*
+## Installation
+### Clone the repo
 `git clone git@github.com:zeeberry/florish-app.git`
 
-*Check that you have node and npm installed*
+### Check that you have node and npm installed
 To check if you have Node.js installed, run this command in your terminal:
 `node -v`
 
@@ -40,18 +40,18 @@ npm is a separate project from Node.js, and tends to update more frequently. As 
 
 `npm install npm@latest -g`
 
-*Install dependencies*
+### Install dependencies
 To install dependencies run this command in your terminal:
 `npm install`
 
-*Start dev server*
+### Start dev server
 To start your local dev server run this command in your terminal:
 `npm run dev`
 
-*Voila!*
+### Voila!
 The server renders on:
 `http://localhost:3000`
 
-### Notes
+## Notes
 
 This project was started off from [this template](https://github.com/vercel/next.js/tree/master/examples/with-styled-components)
