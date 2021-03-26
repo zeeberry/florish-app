@@ -23,17 +23,24 @@ Interviewing for a software engineering job is initimidating, especially if you'
 - Storybook
 - Jest
 
+## Style Notes
+Use semicolons. LOL
+I have to add a linter and formatter at some point.  
+
 ## Installation
 ### Clone the repo
+
 `git clone git@github.com:zeeberry/florish-app.git`
 
 ### Check that you have node and npm installed
 To check if you have Node.js installed, run this command in your terminal:
+
 `node -v`
 
 Make sure to have at least node version 15
 
 To confirm that you have npm installed you can run this command in your terminal:
+
 `npm -v`
 
 npm is a separate project from Node.js, and tends to update more frequently. As a result, even if you’ve just downloaded Node.js (and therefore npm), you’ll probably need to update your npm. To update your npm, type this into your terminal:
@@ -41,15 +48,30 @@ npm is a separate project from Node.js, and tends to update more frequently. As 
 `npm install npm@latest -g`
 
 ### Install dependencies
-To install dependencies run this command in your terminal:
+To install dependencies make sure you're on the root directory of the project and run this command in your terminal:
+
 `npm install`
+
+### Set environment variables
+In order to connect to our DB you'll need to set the FaunaDB endpoint and key as an environment variable. 
+
+1. Ask for your unique FaunaDB key. 
+
+2. Once you have your key, create an `.env` file on the root directory. Add the below code, where `<KEY>` should be replaced with the unique key you were given. 
+
+```
+NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT='https://graphql.fauna.com/graphql'
+NEXT_PUBLIC_FAUNADB_SECRET=<KEY>
+```
 
 ### Start dev server
 To start your local dev server run this command in your terminal:
+
 `npm run dev`
 
 ### Voila!
 The server renders on:
+
 `http://localhost:3000`
 
 ## Notes
