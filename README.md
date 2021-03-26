@@ -24,9 +24,33 @@ Interviewing for a software engineering job is initimidating, especially if you'
 - Jest
 
 ### Installation
-1. Clone the repo
+*Clone the repo*
+`git clone git@github.com:zeeberry/florish-app.git`
 
-2. Start dev server `npm run dev`
+*Check that you have node and npm installed*
+To check if you have Node.js installed, run this command in your terminal:
+`node -v`
+
+Make sure to have at least node version 15
+
+To confirm that you have npm installed you can run this command in your terminal:
+`npm -v`
+
+npm is a separate project from Node.js, and tends to update more frequently. As a result, even if you’ve just downloaded Node.js (and therefore npm), you’ll probably need to update your npm. To update your npm, type this into your terminal:
+
+`npm install npm@latest -g`
+
+*Install dependencies*
+To install dependencies run this command in your terminal:
+`npm install`
+
+*Start dev server*
+To start your local dev server run this command in your terminal:
+`npm run dev`
+
+*Voila!*
+The server renders on:
+`http://localhost:3000`
 
 ### Notes
 
