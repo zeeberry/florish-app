@@ -8,7 +8,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button {
-    padding: 1em 1.2em;
+    background-color: #322EDD;
+    color: #FFFFFF;
+    border-radius: 0.3em;
+    border: none;
+    margin-top: 1em;
+    padding: 0.7em 3em;
     min-width: 6.25em;
     display: block;
     cursor: pointer;
