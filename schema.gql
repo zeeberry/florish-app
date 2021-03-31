@@ -30,4 +30,5 @@ type Interview {
 type Query {
   accounts: [Account]
   accountByEmail(email: String!): [Account!]
+  allProfilesInfo: [Profile!]
 }
