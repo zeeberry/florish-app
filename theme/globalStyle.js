@@ -1,4 +1,5 @@
 import { createGlobalStyle} from 'styled-components';
+import colors from './theme';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -8,8 +9,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button {
-    background-color: #322EDD;
-    color: #FFFFFF;
+    background-color: ${colors.purple};
+    color: ${colors.white};
     border-radius: 0.3em;
     border: none;
     margin-top: 1em;
@@ -24,6 +25,11 @@ const GlobalStyle = createGlobalStyle`
     padding: 1em 1.2em;
     width: 100%;
     box-sizing: border-box;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-inline-start: 0;
   }
 `;
 

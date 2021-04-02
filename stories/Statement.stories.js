@@ -3,9 +3,16 @@ import React from 'react';
 import Statement from '../components/shared/statement';
 
 export default {
-  title: 'Statement',
+  title: 'Form/Statement',
   component: Statement
 };
 
-export const Default = (args) => <Statement overline='A great question' title='This is a question' buttonText='Next'/>;
+const Template = (args) => <Statement {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+  overline: 'A great question',
+  title: 'This is a question',
+  buttonText: 'Next'
+};
 

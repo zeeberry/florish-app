@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../theme/globalStyle';
-import theme from '../theme/theme';
+import colors from '../theme/theme';
 import { Main, Header, Footer, Logo } from '../components/shared/elements';
 import initialState from '../store/initialState';
 import Context from '../store/context';
@@ -22,12 +22,12 @@ export default function App({ Component, pageProps }) {
         />
       </Head>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={colors}>
         <Context.Provider value={{ state, dispatch }}>
           <Header><Logo>Florish</Logo></Header>
-            <Main>
-              <Component {...pageProps} />
-            </Main>
+          <Main>
+            <Component {...pageProps} />
+          </Main>
           <Footer>Made in NYC</Footer>
         </Context.Provider>
       </ThemeProvider>

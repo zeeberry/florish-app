@@ -18,6 +18,7 @@ export const Main = styled.main`
 
 export const Header = styled.header`
   padding: 1em 2em;
+  border: 1px solid;
 `;
 
 export const Logo = styled.div`
@@ -29,4 +30,21 @@ export const Footer = styled.footer`
   display: flex;
   justify-content: center;
   font-size: 0.8em;
+  border: 1px solid;
+`;
+
+export const WhiteLink = styled.a`
+  color: ${(props) => props.theme.white };
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+
+  &:active {
+    color: ${(props) => props.theme.white };
+  }
+`;
+
+export const DashboardHeader = styled.div`
+  padding: 1em;
+  height: 60px;
+  border-bottom: 1px solid ${(props) => props.theme[props.color]};
 `;
