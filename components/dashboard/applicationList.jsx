@@ -3,20 +3,16 @@ import PropTypes from 'prop-types';
 import ApplicationListItem from './applicationListItem';
 
 const Section = styled.section`
-  background-color: ${(props) => props.theme.black};
-  color: ${(props) => props.theme.white};
-  background: black;
-  color: white;
-  padding: 1em;
-  min-height: 21em;
-  width: 18em;
+  background-color: ${(props) => props.theme.purple};
+  color: ${(props) => props.theme.white };
+  max-width: 18em;
+  flex: 1;
 `;
 
 const LinkWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 100%;
-  margin-top: 4em;
+  margin: 1em;
 `;
 
 const Link = styled.a`
@@ -29,22 +25,48 @@ const Link = styled.a`
   }
 `;
 
-const Header = styled.h1`
-  margin: 0;
-  font-size: 0.9em;
-  font-weight: normal;
-  text-transform: uppercase;
-`;
-
 const List = styled.ul`
-  margin-top: 4em;
+  margin; 1em 0; 
 `;
 
+const UserProfile = styled.div`
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid ${(props) => props.theme.lightPurple };
+`;
+
+const RightColumn = styled.div`
+  margin-left: 1em;
+`;
+
+const Image = styled.div`
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background: ${(props) => props.theme.white };
+`;
+
+const Name = styled.div`
+`;
+
+const Email = styled.div`
+  font-size: 0.9em;
+`;
 export default function ApplicationList({applications}) {
 
   return (
     <Section>
-      <Header>Your Notes</Header>
+      <UserProfile>
+        <Image />
+        <RightColumn>
+          <Name>Shireen Miraji</Name>
+          <Email>khobra.z@gmail.com</Email>
+        </RightColumn>
+      </UserProfile>
+      <LinkWrapper>
+        <Link href=''>+ Add Application</Link>
+      </LinkWrapper>
       <List>
         {applications.map((application, index)=> 
           <ApplicationListItem 
@@ -53,9 +75,6 @@ export default function ApplicationList({applications}) {
             selected={index === 0} />
         )}
       </List>
-      <LinkWrapper>
-        <Link href=''>+ Add Application</Link>
-      </LinkWrapper>
     </Section>
   );
 };

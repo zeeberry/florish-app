@@ -1,8 +1,8 @@
-const theme = {
-  colors: {
-    primary: '#0070f3',
-    black: '#0c0c0c'
-  },
+const colors = {
+  black: '#0c0c0c',
+  white: '#FFFFFF',
+  purple: '#322EDD',
+  lightPurple: '#5B57E3',
 };
 
-export default theme;
+export default colors;

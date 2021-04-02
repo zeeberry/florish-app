@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 const Item = styled.li`
   display: block;
-  padding: 0 1em;
-  margin: 1em 0;
+  padding: 1em;
   font-size: 1.17em;
   font-weight: bold;
-  border-left: 3px solid ${(props) => props.selected ? 'white' : 'black'};
+  background: ${(props) => props.selected ? props.theme.black : 'inherit'};
   cursor: pointer;
 `;
 
