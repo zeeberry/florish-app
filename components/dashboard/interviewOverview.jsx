@@ -7,42 +7,54 @@ const Section = styled.section`
   min-height: 21em;
 `;
 
-const LinkWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin-top: 4em;
-`;
-
-const Link = styled.a`
-  letter-spacing: 0.05em;
-  font-size: 0.9em;
-`;
-
 const Header = styled.h1`
   margin: 0;
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-weight: normal;
   text-transform: uppercase;
 `;
 
-const List = styled.ul`
-  margin-top: 4em;
+const EmptyMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Title = styled.div`
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const Message = styled.div`
+  width: 20em;
+  margin-top: 1.5em;
+`;
+
+const Description = styled.div`
+  margin-top: 0.5em;
+`;
+
+const Image = styled.div`
+  width: 4.5em;
+  height: 4.5em;
+  background: ${(props) => props.theme.black};
 `;
 
 export default function InterviewOverview({interview}) {
 
   return (
     <Section>
-      <Header>Interview Overview</Header>
-      <h1>{interview}</h1>
-      <nav>
-        <ul>
-          <li>Guided Notes</li>
-          <li>Free Form Notes</li>
-          <li>The Feels</li>
-        </ul>
-      </nav>
+      <Header>Notes</Header>
+      <EmptyMessage>
+        <Image />
+        <Message>
+          <Title>Your notes will go here</Title>
+          <Description>Your interview hasnt't happened yet. We will help you add notes once your interview is done. </Description>
+        </Message>
+      </EmptyMessage>
     </Section>
   );
 };
