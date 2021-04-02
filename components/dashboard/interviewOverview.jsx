@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Section = styled.section`
+  flex: 1;
   padding: 1em;
   min-height: 21em;
-  width: 18em;
 `;
 
 const LinkWrapper = styled.div`

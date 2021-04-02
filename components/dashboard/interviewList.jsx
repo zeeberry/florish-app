@@ -1,44 +1,63 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import InterviewListItem from './interviewListItem';
+import { WhiteLink as Link, DashboardHeader } from '../shared/elements';
 
 const Section = styled.section`
-  padding: 1em;
+  background-color: ${(props) => props.theme.black};
+  color: ${(props) => props.theme.white };
   min-height: 21em;
-  width: 18em;
+  flex: 1;
 `;
 
 const LinkWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 100%;
-  margin-top: 4em;
+  margin: 1em;
 `;
 
-const Link = styled.a`
-  letter-spacing: 0.05em;
-  font-size: 0.9em;
+const Header = styled(DashboardHeader)`
 `;
 
-const Header = styled.h1`
+const Title = styled.h2`
+  margin: 0.2em 0 0;
+  font-size: 1.2em;
+`;
+
+const Eyebrow = styled.h1`
   margin: 0;
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-weight: normal;
   text-transform: uppercase;
 `;
 
 const List = styled.ul`
-  margin-top: 4em;
+  margin: 1em 0;
+`;
+
+const Rating = styled.div`
+  display: flex;
+  margin-top: 0.2em;
+`;
+
+const Fire = styled.div`
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+  background: ${(props) => props.theme.white };
+  margin-left: 0.2em;
 `;
 
 export default function InterviewList({interviews, company}) {
 
   return (
     <Section>
-      <Header>Application</Header>
-      <h1>Software Engineering @ {company}</h1>
+      <Header color='gray'>
+        <Eyebrow>Interviews</Eyebrow>
+        <Title>Software Engineering @ {company}</Title>
+        <Rating><Fire/><Fire/><Fire/></Rating>
+      </Header>
       <LinkWrapper>
-        <div>Interviews</div>
         <Link href=''>+ Add Interview</Link>
       </LinkWrapper>
       <List>
@@ -46,7 +65,7 @@ export default function InterviewList({interviews, company}) {
           <InterviewListItem 
             key={interview} 
             label={interview} 
-            selected={index === 0} />
+            selected={index === 1} />
         )}
       </List>
     </Section>

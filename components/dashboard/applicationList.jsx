@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ApplicationListItem from './applicationListItem';
+import { WhiteLink as Link, DashboardHeader } from '../shared/elements';
 
 const Section = styled.section`
   background-color: ${(props) => props.theme.purple};
@@ -15,25 +16,13 @@ const LinkWrapper = styled.div`
   margin: 1em;
 `;
 
-const Link = styled.a`
-  color: white;
-  letter-spacing: 0.05em;
-  font-size: 0.9em;
-
-  &:active {
-    color: white;
-  }
-`;
-
 const List = styled.ul`
   margin; 1em 0; 
 `;
 
-const UserProfile = styled.div`
-  padding: 1em;
+const UserProfile = styled(DashboardHeader)`
   display: flex;
   align-items: center;
-  border-bottom: 1px solid ${(props) => props.theme.lightPurple };
 `;
 
 const RightColumn = styled.div`
@@ -57,7 +46,7 @@ export default function ApplicationList({applications}) {
 
   return (
     <Section>
-      <UserProfile>
+      <UserProfile color='lightPurple'>
         <Image />
         <RightColumn>
           <Name>Shireen Miraji</Name>
