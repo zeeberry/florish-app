@@ -110,3 +110,53 @@ export const createAccount = async (email, name, company, role, date, type, note
 
   return data
 };
+
+//Future TODO: make query more dynamic for pagination
+export const allProfilesInfo = () => {
+  const query = `query allProfilesInfo {
+      allProfilesInfo(_size: 25){
+        data {
+          account {
+            email
+          }
+          _id
+          name
+          applications {
+            data {
+              _id
+              company
+              role
+              interviews {
+                data {
+                  _id
+                  type
+                  date
+                }
+              }
+            }
+          }
+        }
+    }
+  }`;
+
+  const { data, error } = useFetch(
+    process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
+        'Content-type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        query
+      }),
+    }
+  );
+
+  return {
+    data: getData(data),
+    errorMessage: getErrorMessage(error, data),
+    error,
+  };
+};
