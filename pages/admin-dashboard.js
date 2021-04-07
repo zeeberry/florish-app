@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { allProfilesInfo } from '../graphql/api';
+import { sendEmailAdminDashboard } from '../sendgrid/sendgrid';
 
 const getProfiles = (data) => {
   return data ? data.allProfilesInfo.data : [];
@@ -20,6 +21,10 @@ const getInterviews = (applications) => {
     })
     return interviews;
 }
+
+// const sendEmail = (email) => {
+    
+// };
 
 export default function AdminDashboard() {
   const { data, errorMessage } = allProfilesInfo();
@@ -57,6 +62,7 @@ export default function AdminDashboard() {
                                 )
                             })}
                         </div>
+                        <button>Send Email</button>
                     </div>
                 )
             })
