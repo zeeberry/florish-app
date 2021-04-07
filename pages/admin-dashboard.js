@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { allProfilesInfo } from '../graphql/api';
 
 const getProfiles = (data) => {
@@ -9,12 +8,13 @@ const getProfiles = (data) => {
 const getInterviews = (applications) => {
     let interviews = [];
     applications.forEach(application => {
+        const nextInterview = application.interviews.data.length-1;
         const interview = {
-            _id: application.interviews.data[application.interviews.data.length-1]._id,
+            _id: application.interviews.data[nextInterview]._id,
             company: application.company,
             role: application.role,
-            type: application.interviews.data[application.interviews.data.length-1].type,
-            date: application.interviews.data[application.interviews.data.length-1].date
+            type: application.interviews.data[nextInterview].type,
+            date: application.interviews.data[nextInterview].date
         };
         interviews.push(interview);
     })
@@ -35,35 +35,24 @@ export default function AdminDashboard() {
     <>
       <section>
         <h1>Admin Dashboard</h1>
-        {!data ? (
+        {errorMessage ? <p>Sorry, there was an issue</p> 
+        : !data ? (
             <p>Loading entries...</p>
-        ) : errorMessage ? <p>Sorry, there was an issue</p>
+        ) 
         : profiles.map((entry) => {
                 return (
-                    <div key={entry._id}>
-                        <p>
-                            Name: {entry.name}
-                        </p>
-                        <p>
-                            Email: {entry.account.email}
-                        </p>
+                    <div style={{ 'border-bottom': '0.1em solid black' }} key={entry._id}>
+                        <p>Name: {entry.name}</p>
+                        <p>Email: {entry.account.email}</p>
                         <div>
                             <div>Interviews</div>
                             {getInterviews(entry.applications.data).map((interview) => {
                                 return (
                                     <div key={interview._id}>
-                                        <p>
-                                            Company: {interview.company}
-                                        </p>
-                                        <p>
-                                            Role: {interview.role}
-                                        </p>
-                                        <p>
-                                            Type: {interview.type}
-                                        </p>
-                                        <p>
-                                            Date: {interview.date}
-                                        </p>
+                                        <p>Company: {interview.company}</p>
+                                        <p>Role: {interview.role}</p>
+                                        <p>Type: {interview.type}</p>
+                                        <p>Date: {interview.date}</p>
                                     </div>
                                 )
                             })}

@@ -111,10 +111,10 @@ export const createAccount = async (email, name, company, role, date, type, note
   return data
 };
 
-//TODO: make query more dynamic for pagination
+//Future TODO: make query more dynamic for pagination
 export const allProfilesInfo = () => {
   const query = `query allProfilesInfo {
-      allProfilesInfo(_size: 7){
+      allProfilesInfo(_size: 25){
         data {
           account {
             email
@@ -149,8 +149,7 @@ export const allProfilesInfo = () => {
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        query,
-        variables: {}
+        query
       }),
     }
   );
