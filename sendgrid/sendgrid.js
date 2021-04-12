@@ -15,10 +15,10 @@ export const sendEmailAdminDashboard = async (email) => {
   await sgMail
   .send(msg)
   .then(() => {
-    result = 'Email sent!'
+    result = 'Email sent!';
   }, 
   error => {
-    result = error
+    result = error;
   });
 
   return result;

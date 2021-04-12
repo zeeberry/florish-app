@@ -3,7 +3,7 @@ import { allProfilesInfo } from '../graphql/api';
 
 const getProfiles = (data) => {
   return data ? data.allProfilesInfo.data : [];
-}
+};
 
 const getInterviews = (applications) => {
     let interviews = [];
@@ -19,7 +19,7 @@ const getInterviews = (applications) => {
         interviews.push(interview);
     })
     return interviews;
-}
+};
 
 const sendEmail = async (email) => {
   fetch('/api/send-email', {

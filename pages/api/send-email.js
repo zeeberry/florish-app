@@ -22,4 +22,4 @@ export default async (req, res) => {
             message: "The requested endpoint was not found or doesn't support this method."
         }
     });
-}
+};
