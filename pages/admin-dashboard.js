@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { allProfilesInfo } from '../graphql/api';
-import { sendEmailAdminDashboard } from '../sendgrid/sendgrid';
 
 const getProfiles = (data) => {
   return data ? data.allProfilesInfo.data : [];
@@ -22,9 +21,13 @@ const getInterviews = (applications) => {
     return interviews;
 }
 
-// const sendEmail = (email) => {
-    
-// };
+const sendEmail = async (email) => {
+  fetch('/api/send-email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  });
+};
 
 export default function AdminDashboard() {
   const { data, errorMessage } = allProfilesInfo();
@@ -41,12 +44,10 @@ export default function AdminDashboard() {
       <section>
         <h1>Admin Dashboard</h1>
         {errorMessage ? <p>Sorry, there was an issue</p> 
-        : !data ? (
-            <p>Loading entries...</p>
-        ) 
+        : !data ? (<p>Loading entries...</p>) 
         : profiles.map((entry) => {
                 return (
-                    <div style={{ 'border-bottom': '0.1em solid black' }} key={entry._id}>
+                    <div style={{ 'borderBottom': '0.1em solid black' }} key={entry._id}>
                         <p>Name: {entry.name}</p>
                         <p>Email: {entry.account.email}</p>
                         <div>
@@ -62,7 +63,7 @@ export default function AdminDashboard() {
                                 )
                             })}
                         </div>
-                        <button>Send Email</button>
+                        <button style={{ 'marginBottom': '1em' }} onClick={() => sendEmail(entry.account.email)}>Send Email</button>
                     </div>
                 )
             })

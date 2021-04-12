@@ -1,29 +1,25 @@
-export const sendEmailAdminDashboard = (email) => {
-    return sendEmailAdminDash(email);
-};
+export const sendEmailAdminDashboard = async (email) => {
+  const sgMail = require('@sendgrid/mail');
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const sendEmailAdminDash = (email) => {
-    const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY); 
+  const msg = {
+    to: email,
+    from: 'notifications@florish.tech',
+    subject: 'Notification from Florish',
+    text: 'Notification from Florish',
+    html: 'This is a notification from Florish',
+  };
 
-    const msg = {
-        to: email,
-        from: 'notifications@florish.tech',
-        subject: 'Notification from Florish',
-        text: 'This is a notification from Florish.',
-        html: 'This is a notification from Florish.'
-    };
+  let result = '';
 
-    let result = '';
+  await sgMail
+  .send(msg)
+  .then(() => {
+    result = 'Email sent!'
+  }, 
+  error => {
+    result = error
+  });
 
-    sgMail
-    .send(msg)
-    .then(() => {
-        result = 'Email Sent!';
-    })
-    .catch((error) => {
-        result = `There was an error, ${error}`;
-    })
-
-    return result;
+  return result;
 };
