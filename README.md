@@ -18,6 +18,7 @@ Interviewing for a software engineering job is initimidating, especially if you'
 - NextJS
 - FaunaDB
 - GraphQL
+- Sendgrid
 - Vercel
 - Styled Components
 - Storybook
@@ -53,15 +54,16 @@ To install dependencies make sure you're on the root directory of the project an
 `npm install`
 
 ### Set environment variables
-In order to connect to our DB you'll need to set the FaunaDB endpoint and key as an environment variable. 
+You'll need to set the FaunaDB endpoint and key, as well as the Sendgrid key, as environment variables. 
 
-1. Ask for your unique FaunaDB key. 
+1. Ask for your unique FaunaDB key & Sendgrid key. 
 
-2. Once you have your key, create an `.env` file on the root directory. Add the below code, where `<KEY>` should be replaced with the unique key you were given. 
+2. Once you have your keys, create an `.env` file on the root directory. Add the below code, where `<KEY>` should be replaced with the unique key you were given. 
 
 ```
 NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT='https://graphql.fauna.com/graphql'
 NEXT_PUBLIC_FAUNADB_SECRET=<KEY>
+SENDGRID_API_KEY=<KEY>
 ```
 
 ### Start dev server
