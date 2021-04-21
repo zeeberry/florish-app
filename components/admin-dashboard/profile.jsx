@@ -20,11 +20,11 @@ const getInterviews = (applications) => {
 
 toast.configure();
 export default function Profile({ entry }) {
-  const sendEmailSuccessToast = () => {
+  const showEmailSuccessToast = () => {
     toast.success('Email sent! 🚀');
   };
 
-  const sendEmailErrorToast = (status, error) => {
+  const showEmailErrorToast = (status, error) => {
     toast.error(`Error sending email: ${status} ${error}`);
   }
 
@@ -35,10 +35,10 @@ export default function Profile({ entry }) {
       body: JSON.stringify({ email: email })
     });
     if(result.status === 200){
-      sendEmailSuccessToast();
+      showEmailSuccessToast();
     }
     else{
-      sendEmailErrorToast(result.status, result.statusText);
+      showEmailErrorToast(result.status, result.statusText);
     }
   };
 
