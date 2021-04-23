@@ -11,7 +11,7 @@ import InterviewOverview from '../components/dashboard/interviewOverview';
 const Content = styled.div`
   display: flex;
   min-height: 100vh;
-  width: 300%;
+  width: 100%;
 `
 
 const getProfile = (data) => {
