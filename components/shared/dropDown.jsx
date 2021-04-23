@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import {useState} from 'react';
+import { useState } from 'react';
 
-const DropDown = ({onClick, overline, title, buttonText, name, options}) => {
+const DropDown = ({ onClick, overline, title, buttonText, name, options }) => {
   const [selected, setSelected] = useState(options[0]);
 
   const onChange = (e) => {
@@ -13,11 +13,13 @@ const DropDown = ({onClick, overline, title, buttonText, name, options}) => {
       <p>{overline}</p>
       <h1>{title}</h1>
       <select name={name} onChange={onChange} value={selected}>
-        {options.map((option) =>
-          <option value={option.toLowerCase()} key={option.toLowerCase()}>{option}</option>
-        )}
+        {options.map((option) => (
+          <option value={option.toLowerCase()} key={option.toLowerCase()}>
+            {option}
+          </option>
+        ))}
       </select>
-      <button onClick={()=>onClick(selected)}>{buttonText}</button>
+      <button onClick={() => onClick(selected)}>{buttonText}</button>
     </>
   );
 };
@@ -30,12 +32,12 @@ DropDown.propTypes = {
   title: PropTypes.string,
   buttonText: PropTypes.string,
   name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 DropDown.defaultProps = {
   onClick: () => {},
   overline: 'Overline',
   title: 'Title',
-  buttonText: 'Button'
+  buttonText: 'Button',
 };

@@ -6,8 +6,8 @@ const Item = styled.li`
   padding: 0.5em 1em;
   font-size: 1.17em;
   font-weight: bold;
-  background: ${(props) => props.selected ? props.theme.white : 'inherit'};
-  color: ${(props) => props.selected ? props.theme.black : 'inherit'};
+  background: ${(props) => (props.selected ? props.theme.white : 'inherit')};
+  color: ${(props) => (props.selected ? props.theme.black : 'inherit')};
   cursor: pointer;
 `;
 
@@ -21,21 +21,21 @@ const SubTitle = styled.div`
   font-weight: normal;
 `;
 
-export default function InterviewListItem({label, selected}) {
+export default function InterviewListItem({ label, selected }) {
   return (
     <Item selected={selected}>
       <Title>{label}</Title>
       <SubTitle>Monday, June 9th 2021 @ 9am</SubTitle>
     </Item>
-  )
-};
+  );
+}
 
 InterviewListItem.propTypes = {
   label: PropTypes.string,
-  selected: PropTypes.bool
+  selected: PropTypes.bool,
 };
 
 InterviewListItem.defaultProps = {
   label: '',
-  selected: false
+  selected: false,
 };

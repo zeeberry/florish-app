@@ -4,7 +4,7 @@ import DateTime from '../components/shared/dateTime';
 
 export default {
   title: 'Form/DateTime',
-  component: DateTime
+  component: DateTime,
 };
 
 const Template = (args) => <DateTime {...args} />;
@@ -14,6 +14,5 @@ Default.args = {
   overline: 'A great question',
   title: 'This is a question',
   buttonText: 'Next',
-  name: 'defaultDateTime'
+  name: 'defaultDateTime',
 };
-

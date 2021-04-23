@@ -5,7 +5,7 @@ import { WhiteLink as Link, DashboardHeader } from '../shared/elements';
 
 const Section = styled.section`
   background-color: ${(props) => props.theme.purple};
-  color: ${(props) => props.theme.white };
+  color: ${(props) => props.theme.white};
   max-width: 18em;
   flex: 1;
 `;
@@ -33,17 +33,15 @@ const Image = styled.div`
   width: 3em;
   height: 3em;
   border-radius: 50%;
-  background: ${(props) => props.theme.white };
+  background: ${(props) => props.theme.white};
 `;
 
-const Name = styled.div`
-`;
+const Name = styled.div``;
 
 const Email = styled.div`
   font-size: 0.9em;
 `;
-export default function ApplicationList({applications}) {
-
+export default function ApplicationList({ applications }) {
   return (
     <Section>
       <UserProfile color='lightPurple'>
@@ -57,17 +55,14 @@ export default function ApplicationList({applications}) {
         <Link href=''>+ Add Application</Link>
       </LinkWrapper>
       <List>
-        {applications.map((application, index)=> 
-          <ApplicationListItem 
-            key={application} 
-            label={application} 
-            selected={index === 0} />
-        )}
+        {applications.map((application, index) => (
+          <ApplicationListItem key={application} label={application} selected={index === 0} />
+        ))}
       </List>
     </Section>
   );
-};
+}
 
 ApplicationList.propTypes = {
-  applications: PropTypes.arrayOf(PropTypes.string).isRequired
+  applications: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

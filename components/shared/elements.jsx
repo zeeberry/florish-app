@@ -34,12 +34,12 @@ export const Footer = styled.footer`
 `;
 
 export const WhiteLink = styled.a`
-  color: ${(props) => props.theme.white };
+  color: ${(props) => props.theme.white};
   letter-spacing: 0.05em;
   font-size: 0.9em;
 
   &:active {
-    color: ${(props) => props.theme.white };
+    color: ${(props) => props.theme.white};
   }
 `;
 

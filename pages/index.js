@@ -18,7 +18,7 @@ export default function Home() {
   const [step, setStep] = useState(0);
   const context = useContext(Context);
   const form = [
-    Intro, 
+    Intro,
     Name,
     InterviewDate,
     Company,
@@ -27,28 +27,28 @@ export default function Home() {
     InterviewType,
     Nerves,
     Contact,
-    Outro
+    Outro,
   ];
   const FormStep = form[step];
 
-  useEffect(()=> {
+  useEffect(() => {
     if (step + 1 === form.length) {
       const state = context.state;
-      const {name, email} = state.user;
-      const {company, role} = state.application;
-      const {date, type, notes} = state.interview;
+      const { name, email } = state.user;
+      const { company, role } = state.application;
+      const { date, type, notes } = state.interview;
 
       createAccount(email, name, company, role, date, type, notes)
         .then((data) => {
           console.log(data.data);
         })
         .catch((error) => {
-          console.log(`boo :( ${error}`)
-          alert('🤷<200d>♀️')
+          console.log(`boo :( ${error}`);
+          alert('🤷<200d>♀️');
         });
     }
   }, [step]);
-  
+
   const onClick = (data) => {
     const nextStep = step + 1;
     if (form[nextStep]) {
@@ -61,4 +61,4 @@ export default function Home() {
       <FormStep onClick={onClick} />
     </Content>
   );
-};
+}

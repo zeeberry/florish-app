@@ -1,7 +1,7 @@
 const newUser = {
   id: '',
   name: '',
-  email: ''
+  email: '',
 };
 
 export default newUser;

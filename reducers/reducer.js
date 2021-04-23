@@ -5,8 +5,8 @@ const reducer = (state, action) => {
         ...state,
         user: {
           ...state.user,
-          name: action.payload
-        }
+          name: action.payload,
+        },
       };
     }
     case 'user/setEmail': {
@@ -14,8 +14,8 @@ const reducer = (state, action) => {
         ...state,
         user: {
           ...state.user,
-          email: action.payload
-        }
+          email: action.payload,
+        },
       };
     }
     case 'application/setCompany': {
@@ -23,8 +23,8 @@ const reducer = (state, action) => {
         ...state,
         application: {
           ...state.application,
-          company: action.payload
-        }
+          company: action.payload,
+        },
       };
     }
     case 'application/setRole': {
@@ -32,8 +32,8 @@ const reducer = (state, action) => {
         ...state,
         application: {
           ...state.application,
-          role: action.payload
-        }
+          role: action.payload,
+        },
       };
     }
     case 'application/setExcitement': {
@@ -42,8 +42,8 @@ const reducer = (state, action) => {
         application: {
           ...state.application,
           initialExcitement: action.payload,
-          currentExcitement: action.payload
-        }
+          currentExcitement: action.payload,
+        },
       };
     }
     case 'interview/setDate': {
@@ -51,8 +51,8 @@ const reducer = (state, action) => {
         ...state,
         interview: {
           ...state.interview,
-          date: action.payload
-        }
+          date: action.payload,
+        },
       };
     }
     case 'interview/setType': {
@@ -60,8 +60,8 @@ const reducer = (state, action) => {
         ...state,
         interview: {
           ...state.interview,
-          type: action.payload
-        }
+          type: action.payload,
+        },
       };
     }
     case 'interview/setNerves': {
@@ -69,11 +69,11 @@ const reducer = (state, action) => {
         ...state,
         interview: {
           ...state.interview,
-          nerves: action.payload
-        }
+          nerves: action.payload,
+        },
       };
     }
-    default: 
+    default:
       return state;
   }
 };

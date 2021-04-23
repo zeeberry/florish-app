@@ -1,7 +1,7 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Email = ({onClick, overline, title, buttonText, name}) => {
+const Email = ({ onClick, overline, title, buttonText, name }) => {
   const [text, setText] = useState('');
 
   const onChange = (e) => {
@@ -12,8 +12,8 @@ const Email = ({onClick, overline, title, buttonText, name}) => {
     <>
       <p>{overline}</p>
       <h1>{title}</h1>
-      <input type='email' name={name} value={text} onChange={onChange} required/>
-      <button onClick={()=>onClick(text)}>{buttonText}</button>
+      <input type='email' name={name} value={text} onChange={onChange} required />
+      <button onClick={() => onClick(text)}>{buttonText}</button>
     </>
   );
 };
@@ -25,7 +25,7 @@ Email.propTypes = {
   overline: PropTypes.string,
   title: PropTypes.string,
   buttonText: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
 };
 
 Email.defaultProps = {
@@ -33,5 +33,5 @@ Email.defaultProps = {
   overline: '',
   title: '',
   buttonText: '',
-  name: ''
+  name: '',
 };

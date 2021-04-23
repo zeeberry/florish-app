@@ -2,15 +2,15 @@ import { useContext } from 'react';
 import Context from '../../store/context';
 import ShortText from '../shared/shortText';
 
-const Name = ({onClick}) => {
+const Name = ({ onClick }) => {
   const context = useContext(Context);
   const handleClick = (name) => {
     context.dispatch({
       type: 'user/setName',
-      payload: name
+      payload: name,
     });
     onClick();
-  };  
+  };
   return (
     <>
       <ShortText

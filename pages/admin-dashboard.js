@@ -12,7 +12,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (!profiles.length) {
-      setProfiles(getProfiles(data))
+      setProfiles(getProfiles(data));
     }
   }, [data, profiles.length]);
 
@@ -20,13 +20,16 @@ export default function AdminDashboard() {
     <>
       <section>
         <h1>Admin Dashboard</h1>
-        {errorMessage ? <p>Sorry, there was an issue</p>
-          : !data ? (<p>Loading entries...</p>)
-            : profiles.map((entry) => {
-              return <Profile key={entry._id} entry={entry}/>
-            })
-        }
+        {errorMessage ? (
+          <p>Sorry, there was an issue</p>
+        ) : !data ? (
+          <p>Loading entries...</p>
+        ) : (
+          profiles.map((entry) => {
+            return <Profile key={entry._id} entry={entry} />;
+          })
+        )}
       </section>
     </>
   );
-};
+}

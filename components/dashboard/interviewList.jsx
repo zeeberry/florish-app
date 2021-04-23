@@ -5,7 +5,7 @@ import { WhiteLink as Link, DashboardHeader } from '../shared/elements';
 
 const Section = styled.section`
   background-color: ${(props) => props.theme.black};
-  color: ${(props) => props.theme.white };
+  color: ${(props) => props.theme.white};
   min-height: 21em;
   flex: 1;
 `;
@@ -16,8 +16,7 @@ const LinkWrapper = styled.div`
   margin: 1em;
 `;
 
-const Header = styled(DashboardHeader)`
-`;
+const Header = styled(DashboardHeader)``;
 
 const Title = styled.h2`
   margin: 0.2em 0 0;
@@ -44,35 +43,35 @@ const Fire = styled.div`
   width: 0.8em;
   height: 0.8em;
   border-radius: 50%;
-  background: ${(props) => props.theme.white };
+  background: ${(props) => props.theme.white};
   margin-left: 0.2em;
 `;
 
-export default function InterviewList({interviews, company}) {
-
+export default function InterviewList({ interviews, company }) {
   return (
     <Section>
       <Header color='gray'>
         <Eyebrow>Interviews</Eyebrow>
         <Title>Software Engineering @ {company}</Title>
-        <Rating><Fire/><Fire/><Fire/></Rating>
+        <Rating>
+          <Fire />
+          <Fire />
+          <Fire />
+        </Rating>
       </Header>
       <LinkWrapper>
         <Link href=''>+ Add Interview</Link>
       </LinkWrapper>
       <List>
-        {interviews.map((interview, index)=> 
-          <InterviewListItem 
-            key={interview} 
-            label={interview} 
-            selected={index === 1} />
-        )}
+        {interviews.map((interview, index) => (
+          <InterviewListItem key={interview} label={interview} selected={index === 1} />
+        ))}
       </List>
     </Section>
   );
-};
+}
 
 InterviewList.propTypes = {
   interviews: PropTypes.arrayOf(PropTypes.string).isRequired,
-  company: PropTypes.string.isRequired
+  company: PropTypes.string.isRequired,
 };

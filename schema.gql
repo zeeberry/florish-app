@@ -5,7 +5,7 @@ type Account {
 
 type Profile {
   account: Account!
-  name: String! 
+  name: String!
   applications: [Application!] @relation
 }
 
@@ -13,7 +13,7 @@ type Application {
   profile: Profile!
   company: String!
   role: String!
-  initialExcitement: Int  
+  initialExcitement: Int
   currentExcitment: Int
   interviews: [Interview!] @relation
 }

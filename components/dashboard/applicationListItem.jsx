@@ -6,22 +6,20 @@ const Item = styled.li`
   padding: 1em;
   font-size: 1.17em;
   font-weight: bold;
-  background: ${(props) => props.selected ? props.theme.black : 'inherit'};
+  background: ${(props) => (props.selected ? props.theme.black : 'inherit')};
   cursor: pointer;
 `;
 
-export default function ApplicationListItem({label, selected}) {
-  return (
-    <Item selected={selected}>{label}</Item>
-  )
-};
+export default function ApplicationListItem({ label, selected }) {
+  return <Item selected={selected}>{label}</Item>;
+}
 
 ApplicationListItem.propTypes = {
   label: PropTypes.string,
-  selected: PropTypes.bool
+  selected: PropTypes.bool,
 };
 
 ApplicationListItem.defaultProps = {
   label: '',
-  selected: false
+  selected: false,
 };

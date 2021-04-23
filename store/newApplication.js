@@ -3,7 +3,7 @@ const newApplication = {
   company: '',
   role: '',
   initialExcitement: '',
-  currentExcitement: ''
+  currentExcitement: '',
 };
 
 export default newApplication;
