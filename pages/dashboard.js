@@ -12,11 +12,11 @@ const Content = styled.div`
   display: flex;
   min-height: 100vh;
   width: 100%;
-`;
+`
 
 const getProfile = (data) => {
   return data ? data.accountByEmail.data : [];
-};
+}
 
 export default function Dashboard() {
   useUser({ redirectTo: '/signup', redirectIfFound: false });
