@@ -1,4 +1,6 @@
 import { useReducer } from 'react';
+import useUser from '../util/useUser';
+import Link from 'next/link';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../theme/globalStyle';
@@ -24,7 +26,7 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <ThemeProvider theme={colors}>
         <Context.Provider value={{ state, dispatch }}>
-          <Header><Logo>Florish</Logo></Header>
+          <Header><Logo>Florish</Logo><Link href="/api/logout"><button>Logout</button></Link></Header>
           <Main>
             <Component {...pageProps} />
           </Main>

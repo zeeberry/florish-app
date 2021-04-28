@@ -1,14 +1,20 @@
 import { Magic } from '@magic-sdk/admin';
+import { setLoginSession } from '../../util/cookieService';
 
 export default async (req, res) => {
     if(req.method === 'POST'){
-        const magic = new Magic(process.env.MAGIC_SECRET_KEY);
-        const DID = magic.utils.parseAuthorizationHeader(req.headers.authorization);
-        const user = await magic.users.getMetadataByToken(DID);
-        
-        //TODO: build out cookie logic
-
-        return res.status(200).end();
+        try {
+            const DID = req.headers.authorization.split('Bearer').pop().trim();
+            const user_metadata = await new Magic(process.env.MAGIC_SECRET_KEY).users.getMetadataByToken(DID);
+            
+            const session = { ...user_metadata };
+            await setLoginSession(res, session);
+    
+            return res.status(200).end();
+        }
+        catch (error) {
+            res.status(error.status || 500).end(error.message);
+        }
     }
     return res.status(404).json({
         error: {
