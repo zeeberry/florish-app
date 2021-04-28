@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import useUser from '../util/useUser';
+import useUser from '../hooks/useUser';
 import Link from 'next/link';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
@@ -11,6 +11,8 @@ import Context from '../store/context';
 import reducer from '../reducers/reducer';
 
 export default function App({ Component, pageProps }) {
+  const user = useUser();
+
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
@@ -26,7 +28,10 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <ThemeProvider theme={colors}>
         <Context.Provider value={{ state, dispatch }}>
-          <Header><Logo>Florish</Logo><Link href="/api/logout"><button>Logout</button></Link></Header>
+          <Header>
+            <Logo>Florish</Logo>
+            {(user && <Link href="/api/logout"><button>Logout</button></Link>) || <Link href="/signup"><button>Login</button></Link>}
+          </Header>
           <Main>
             <Component {...pageProps} />
           </Main>

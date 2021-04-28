@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useContext } from 'react';
-import useUser from '../util/useUser';
+import useUser from '../hooks/useUser';
 import { getProfileByEmail } from '../graphql/api';
 import Context from '../store/context';
 import ApplicationList from '../components/dashboard/applicationList';

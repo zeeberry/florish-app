@@ -5,9 +5,8 @@ const ENCRYPTION_SECRET = process.env.ENCRYPTION_SECRET;
 
 export async function setLoginSession(res, session) {
   const createdAt = Date.now();
-  // Create a session object with a max age that we can validate later
-  const obj = { ...session, createdAt, maxAge: MAX_AGE };
-  const token = await Iron.seal(obj, ENCRYPTION_SECRET, Iron.defaults);
+  const sessionObj = { ...session, createdAt, maxAge: MAX_AGE };
+  const token = await Iron.seal(sessionObj, ENCRYPTION_SECRET, Iron.defaults);
 
   setTokenCookie(res, token);
 }
@@ -15,12 +14,13 @@ export async function setLoginSession(res, session) {
 export async function getLoginSession(req) {
   const token = getTokenCookie(req);
 
-  if (!token) return
+  if (!token){
+    return;
+  }
 
   const session = await Iron.unseal(token, ENCRYPTION_SECRET, Iron.defaults);
   const expiresAt = session.createdAt + session.maxAge * 1000;
 
-  // Validate the expiration date of the session
   if (Date.now() > expiresAt) {
     throw new Error('Session expired');
   }
