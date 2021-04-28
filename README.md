@@ -54,15 +54,18 @@ To install dependencies make sure you're on the root directory of the project an
 `npm install`
 
 ### Set environment variables
-You'll need to set the FaunaDB endpoint and key, as well as the Sendgrid key, as environment variables. 
+You'll need to set environment variables for FaunaDB, Sendgrid and Magic, as well as an encryption secret for user authorization. 
 
-1. Ask for your unique FaunaDB key & Sendgrid key. 
+1. Ask for your unique keys. 
 
 2. Once you have your keys, create an `.env` file on the root directory. Add the below code, where `<KEY>` should be replaced with the unique key you were given. 
 
 ```
 NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT='https://graphql.fauna.com/graphql'
 NEXT_PUBLIC_FAUNADB_SECRET=<KEY>
+NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY=<KEY>
+MAGIC_SECRET_KEY=<KEY>
+ENCRYPTION_SECRET=<KEY>
 SENDGRID_API_KEY=<KEY>
 ```
 
