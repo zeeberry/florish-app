@@ -1,6 +1,7 @@
 type Account {
   email: String! @unique
   profile: Profile! @relation
+  role: String!
 }
 
 type Profile {
