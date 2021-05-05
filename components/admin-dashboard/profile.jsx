@@ -26,7 +26,7 @@ export default function Profile({ entry }) {
 
   const showEmailErrorToast = (status, error) => {
     toast.error(`Error sending email: ${status} ${error}`);
-  }
+  };
 
   const sendEmail = async (email) => {
     const result = await fetch('/api/send-email', {

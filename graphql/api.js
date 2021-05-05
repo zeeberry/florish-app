@@ -1,4 +1,4 @@
-import useFetch from '../util/useFetch'
+import useFetch from '../hooks/useFetch'
 
 function getData(data) {
   if (!data || data.errors) return null
