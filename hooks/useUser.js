@@ -17,11 +17,13 @@ export default function useUser({ redirectTo, redirectIfFound } = {}) {
     const hasUser = !!user;
 
     useEffect(() => {
-        if (!redirectTo || !finished) return
-        else if ((redirectTo && !redirectIfFound && !hasUser) || (redirectTo && redirectIfFound && hasUser)) {
-          Router.push(redirectTo)
+        if (!redirectTo || !finished) {
+          return;
         }
-      }, [redirectTo, redirectIfFound, finished, hasUser])
+        else if (!!redirectIfFound === !!hasUser) {
+          Router.push(redirectTo);
+        }
+      }, [redirectTo, redirectIfFound, finished, hasUser]);
 
     return error ? null : user;
 };

@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }) {
         <Context.Provider value={{ state, dispatch }}>
           <Header>
             <Logo>Florish</Logo>
-            {(user && <Link href="/api/logout"><button>Logout</button></Link>) || <Link href="/signup"><button>Login</button></Link>}
+            {(user && <Link href="/api/logout"><a>Logout</a></Link>) || <Link href="/signup"><a>Login</a></Link>}
           </Header>
           <Main>
             <Component {...pageProps} />

@@ -15,15 +15,15 @@ export async function getLoginSession(req) {
   const token = getTokenCookie(req);
 
   if (!token){
-    return;
+    return undefined;
   }
 
   const session = await Iron.unseal(token, ENCRYPTION_SECRET, Iron.defaults);
   const expiresAt = session.createdAt + session.maxAge * 1000;
 
   if (Date.now() > expiresAt) {
-    throw new Error('Session expired');
+    return undefined;
   }
 
-  return session
+  return session;
 }
