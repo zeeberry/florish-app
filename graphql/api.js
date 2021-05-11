@@ -1,5 +1,3 @@
-import useFetch from '../hooks/useFetch'
-
 function getData(data) {
   if (!data || data.errors) return null
   return data.data
@@ -108,8 +106,7 @@ export const createAccount = async (email, name, company, role, date, type, note
   return data;
 };
 
-//Future TODO: make query more dynamic for pagination
-export const allProfilesInfo = () => {
+export const allProfilesInfo = async () => {
   const query = `query allProfilesInfo {
       allProfilesInfo(_size: 25){
         data {
@@ -136,24 +133,21 @@ export const allProfilesInfo = () => {
     }
   }`;
 
-  const { data, error } = useFetch(
-    process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
-        'Content-type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        query
-      }),
-    }
-  );
+  const res = await fetch(process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      query
+    }),
+  });
+  const data = await res.json();
 
   return {
     data: getData(data),
-    errorMessage: getErrorMessage(error, data),
-    error,
+    errorMessage: getErrorMessage(null, data)
   };
 };
