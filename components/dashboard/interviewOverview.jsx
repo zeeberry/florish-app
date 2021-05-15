@@ -43,8 +43,7 @@ const Image = styled.div`
   background: ${(props) => props.theme.black};
 `;
 
-export default function InterviewOverview({interview}) {
-
+export default function InterviewOverview({ interview }) {
   return (
     <Section>
       <Header>Notes</Header>
@@ -52,13 +51,16 @@ export default function InterviewOverview({interview}) {
         <Image />
         <Message>
           <Title>Your notes will go here</Title>
-          <Description>Your interview hasnt't happened yet. We will help you add notes once your interview is done. </Description>
+          <Description>
+            Your interview hasnt't happened yet. We will help you add notes once your interview is
+            done.{' '}
+          </Description>
         </Message>
       </EmptyMessage>
     </Section>
   );
-};
+}
 
 InterviewOverview.propTypes = {
-  interview: PropTypes.string.isRequired
+  interview: PropTypes.string.isRequired,
 };

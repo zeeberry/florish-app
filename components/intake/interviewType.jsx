@@ -2,20 +2,20 @@ import { useContext } from 'react';
 import Context from '../../store/context';
 import DropDown from '../shared/dropDown';
 
-const InterviewType = ({onClick}) => {
+const InterviewType = ({ onClick }) => {
   const options = [
     'Phone Screen',
     'Conversation with Manager',
     'Technical Whiteboarding',
     'Technical Pairing',
     'Technical System Design',
-    'Behavioral/Cultural'
+    'Behavioral/Cultural',
   ];
   const context = useContext(Context);
   const handleClick = (type) => {
     context.dispatch({
       type: 'interview/setType',
-      payload: type
+      payload: type,
     });
     onClick();
   };

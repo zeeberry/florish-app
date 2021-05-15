@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
-const Statement = ({onClick, overline, title, buttonText, href}) => {
+const Statement = ({ onClick, overline, title, buttonText, href }) => {
   const button = <button onClick={onClick}>{buttonText}</button>;
   const link = <Link href={href}>{buttonText}</Link>;
   return (
     <>
       <p>{overline}</p>
       <h1>{title}</h1>
-      { href ? link : button }
+      {href ? link : button}
     </>
   );
 };
@@ -20,13 +20,13 @@ Statement.propTypes = {
   overline: PropTypes.string,
   title: PropTypes.string,
   buttonText: PropTypes.string,
-  href: PropTypes.string
+  href: PropTypes.string,
 };
 
 Statement.defaultProps = {
   onClick: () => {},
-  overline: '', 
+  overline: '',
   title: '',
   buttonText: '',
-  href: ''
+  href: '',
 };

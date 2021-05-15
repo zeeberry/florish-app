@@ -4,13 +4,12 @@ import ApplicationList from '../components/dashboard/applicationList';
 
 export default {
   title: 'Dashboard/ApplicationList',
-  component: ApplicationList
+  component: ApplicationList,
 };
 
 const Template = (args) => <ApplicationList {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  applications: ['Tall Poppy', 'Bitly']
+  applications: ['Tall Poppy', 'Bitly'],
 };
-

@@ -4,7 +4,7 @@ const newInterview = {
   type: '',
   nerves: '',
   notes: '',
-  excitement: ''
+  excitement: '',
 };
 
 export default newInterview;

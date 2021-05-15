@@ -5,7 +5,7 @@ import newInterview from './newInterview';
 const initialState = {
   user: newUser,
   application: newApplication,
-  interview: newInterview
+  interview: newInterview,
 };
 
 export default initialState;

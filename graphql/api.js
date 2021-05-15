@@ -1,16 +1,16 @@
 import useFetch from '../hooks/useFetch'
 
 function getData(data) {
-  if (!data || data.errors) return null
-  return data.data
+  if (!data || data.errors) return null;
+  return data.data;
 }
 
 function getErrorMessage(error, data) {
-  if (error) return error.message
+  if (error) return error.message;
   if (data && data.errors) {
-    return data.errors[0].message
+    return data.errors[0].message;
   }
-  return null
+  return null;
 }
 
 export const getProfileByEmail = (email) => {
@@ -37,29 +37,26 @@ export const getProfileByEmail = (email) => {
       }
       after
     }
-  }`
-  const { data, error } = useFetch(
-    process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
-        'Content-type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        query,
-        variables: { email },
-      }),
-    }
-  )
+  }`;
+  const { data, error } = useFetch(process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      query,
+      variables: { email },
+    }),
+  });
 
   return {
     data: getData(data),
     errorMessage: getErrorMessage(error, data),
     error,
-  }
-}
+  };
+};
 
 export const createAccount = async (email, name, company, role, date, type, notes) => {
   const query = `mutation CreateAccount($email: String!, $name: String!, $company: String!, $role: String!, $date: String!, $type: String!, $notes: String!) {
@@ -92,7 +89,7 @@ export const createAccount = async (email, name, company, role, date, type, note
       _ts
       email
     }
-  }`
+  }`;
 
   const res = await fetch(process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT, {
     method: 'POST',
@@ -103,12 +100,12 @@ export const createAccount = async (email, name, company, role, date, type, note
     },
     body: JSON.stringify({
       query,
-      variables: { email, name, company, role, date, type, notes},
+      variables: { email, name, company, role, date, type, notes },
     }),
-  })
-  const data = await res.json()
+  });
+  const data = await res.json();
 
-  return data
+  return data;
 };
 
 //Future TODO: make query more dynamic for pagination
@@ -139,20 +136,17 @@ export const allProfilesInfo = () => {
     }
   }`;
 
-  const { data, error } = useFetch(
-    process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
-        'Content-type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        query
-      }),
-    }
-  );
+  const { data, error } = useFetch(process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      query,
+    }),
+  });
 
   return {
     data: getData(data),

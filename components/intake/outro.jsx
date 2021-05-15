@@ -1,9 +1,9 @@
 import Statement from '../shared/statement';
 
-const Outro = ({onClick}) => {
+const Outro = ({ onClick }) => {
   return (
     <>
-      <Statement 
+      <Statement
         onClick={onClick}
         overline={`It's ok to be nervous. You got this.`}
         title={`We'll checkin with you after your interview.`}

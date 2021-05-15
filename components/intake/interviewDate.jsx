@@ -2,12 +2,12 @@ import { useContext } from 'react';
 import Context from '../../store/context';
 import DateTime from '../shared/dateTime';
 
-const InterviewDate = ({onClick}) => {
-  const {state, dispatch} = useContext(Context);
+const InterviewDate = ({ onClick }) => {
+  const { state, dispatch } = useContext(Context);
   const handleClick = (date) => {
     dispatch({
       type: 'interview/setDate',
-      payload: date
+      payload: date,
     });
     onClick();
   };

@@ -12,14 +12,14 @@ export const sendEmailAdminDashboard = async (email) => {
 
   let result = '';
 
-  await sgMail
-  .send(msg)
-  .then(() => {
-    result = 'Email sent!';
-  }, 
-  error => {
-    result = error;
-  });
+  await sgMail.send(msg).then(
+    () => {
+      result = 'Email sent!';
+    },
+    (error) => {
+      result = error;
+    }
+  );
 
   return result;
 };

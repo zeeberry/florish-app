@@ -2,12 +2,12 @@ import { useContext } from 'react';
 import Context from '../../store/context';
 import ShortText from '../shared/shortText';
 
-const Role = ({onClick}) => {
+const Role = ({ onClick }) => {
   const context = useContext(Context);
   const handleClick = (role) => {
     context.dispatch({
       type: 'application/setRole',
-      payload: role
+      payload: role,
     });
     onClick();
   };

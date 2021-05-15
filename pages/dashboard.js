@@ -12,7 +12,7 @@ const Content = styled.div`
   display: flex;
   min-height: 100vh;
   width: 100%;
-`;
+`
 
 const getProfile = (data) => {
   return data ? data.accountByEmail.data : [];
@@ -22,7 +22,7 @@ export default function Dashboard() {
   useUser({ redirectTo: '/signup', redirectIfFound: false });
 
   const { data, errorMessage } = getProfileByEmail('zainab@florish.tech');
-  const [ profile, setProfile ] = useState([]);
+  const [profile, setProfile] = useState([]);
   const { state } = useContext(Context);
   const applications = ['Nike', 'Stash'];
   const selected = 'Nike';
@@ -30,15 +30,15 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!profile.length) {
-      setProfile(getProfile(data))
+      setProfile(getProfile(data));
     }
   }, [data, profile.length]);
 
   return (
-      <Content>
-        <ApplicationList applications={applications} selected={selected}/>
-        <InterviewList interviews={interviews} company={selected} />
-        <InterviewOverview interview='Recruiter Call'/>
-      </Content>
+    <Content>
+      <ApplicationList applications={applications} selected={selected} />
+      <InterviewList interviews={interviews} company={selected} />
+      <InterviewOverview interview='Recruiter Call' />
+    </Content>
   );
-};
+}

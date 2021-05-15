@@ -2,12 +2,12 @@ import { useContext } from 'react';
 import Context from '../../store/context';
 import Email from '../shared/email';
 
-const Contact = ({onClick}) => {
+const Contact = ({ onClick }) => {
   const context = useContext(Context);
   const handleClick = (email) => {
     context.dispatch({
       type: 'user/setEmail',
-      payload: email
+      payload: email,
     });
     onClick();
   };

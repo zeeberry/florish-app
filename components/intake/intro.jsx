@@ -1,9 +1,9 @@
 import Statement from '../shared/statement';
 
-const Intro = ({onClick}) => {
+const Intro = ({ onClick }) => {
   return (
     <>
-      <Statement 
+      <Statement
         onClick={onClick}
         overline='Welcome to Florish! We hear you have an interview scheduled'
         title='Are you ready to take control of your interviews?'

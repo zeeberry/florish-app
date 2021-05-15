@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import Context from '../../store/context';
 import MultipleChoice from '../shared/multipleChoice';
 
-const Nerves = ({onClick}) => {
-  const options = ['Very','Somewhat', 'Meh', 'Not really', 'Not at all'];
+const Nerves = ({ onClick }) => {
+  const options = ['Very', 'Somewhat', 'Meh', 'Not really', 'Not at all'];
   const context = useContext(Context);
   const handleClick = (nerves) => {
     context.dispatch({
       type: 'interview/setNerves',
-      payload: nerves
+      payload: nerves,
     });
     onClick();
   };
