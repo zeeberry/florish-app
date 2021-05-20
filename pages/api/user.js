@@ -1,10 +1,13 @@
 import { getLoginSession } from '../../util/cookieService';
+import { getProfileByEmail } from '../../graphql/api';
 
 export default async (req, res) => {
-  const user_session = await getLoginSession(req);
-  //Future TODO: get the user from the DB as well
-  if (user_session) {
-    return res.status(200).json({ user: user_session });
+  let userSession = await getLoginSession(req);
+  if (userSession) {
+    const profile = await getProfileByEmail(userSession.email);
+    const role = profile.data.accountByEmail.data[0].role;
+    userSession.role = role || null;
+    return res.status(200).json({ user: userSession });
   }
   else {
     return res.status(404).json({

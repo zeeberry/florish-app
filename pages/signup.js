@@ -1,11 +1,10 @@
 import Email from '../components/shared/email';
 import useUser from '../hooks/useUser';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { Magic } from 'magic-sdk';
 
 export default function Signup() {
     useUser({ redirectTo: '/dashboard', redirectIfFound: true });
-    const router = useRouter();
 
     const onClick = async (email) => {
         const DID = await new Magic(process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY).auth.loginWithMagicLink({ email: email });
@@ -14,7 +13,7 @@ export default function Signup() {
             headers: { 'Authorization': `Bearer ${DID}` }
         });
         if (authResult.ok){
-            router.push('/dashboard');
+            Router.push('/dashboard');
         }
         else {
             console.error(authResult.message || "Error logging in, please try again");

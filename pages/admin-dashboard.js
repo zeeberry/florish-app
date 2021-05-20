@@ -1,32 +1,47 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { allProfilesInfo } from '../graphql/api';
 import Profile from '../components/admin-dashboard/profile';
-
-const getProfiles = (data) => {
-  return data ? data.allProfilesInfo.data : [];
-};
+import useUser from '../hooks/useUser';
 
 export default function AdminDashboard() {
-  const { data, errorMessage } = allProfilesInfo();
+  const user = useUser();
   const [profiles, setProfiles] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  useEffect(() => {
-    if (!profiles.length) {
-      setProfiles(getProfiles(data))
+  const getProfiles = async () => {
+    const { data, errorMessage } = await allProfilesInfo();
+    if (!!errorMessage) {
+      setErrorMessage(errorMessage);
     }
-  }, [data, profiles.length]);
+    else if (!!data) {
+      setProfiles(data.allProfilesInfo.data);
+    }
+  };
 
-  return (
-    <>
-      <section>
-        <h1>Admin Dashboard</h1>
-        {errorMessage ? <p>Sorry, there was an issue</p>
-          : !data ? (<p>Loading entries...</p>)
+  return (user === undefined) ?
+    (
+      <>
+        <section>
+          <h1>Loading Dashboard...</h1>
+        </section>
+      </>
+    )
+    : (user?.role === "Administrator") ? (
+      <>
+        <section>
+          <h1>Admin Dashboard</h1>
+          {!profiles.length && <button onClick={() => getProfiles()}>Get User Profiles</button>}
+          {errorMessage ? <p>Sorry, there was an issue: {errorMessage}</p>
             : profiles.map((entry) => {
-              return <Profile key={entry._id} entry={entry}/>
+              return <Profile key={entry._id} entry={entry} />
             })
-        }
-      </section>
-    </>
-  );
+          }
+        </section>
+      </>
+    ) :
+      <>
+        <section>
+          <h1>403 Forbidden</h1>
+        </section>
+      </>;
 };
