@@ -13,27 +13,35 @@ export default function AdminDashboard() {
     if (!!errorMessage) {
       setErrorMessage(errorMessage);
     }
-    else {
-      setProfiles(data ? data.allProfilesInfo.data : []);
+    else if (!!data) {
+      setProfiles(data.allProfilesInfo.data);
     }
   };
 
-  return (user?.role === "Administrator") ? (
-    <>
-      <section>
-        <h1>Admin Dashboard</h1>
-        <button disabled={(!!profiles.length || !!errorMessage)} onClick={() => getProfiles()}>Get User Profiles</button>
-        {errorMessage ? <p>Sorry, there was an issue: {errorMessage}</p>
+  return (user === undefined) ?
+    (
+      <>
+        <section>
+          <h1>Loading Dashboard...</h1>
+        </section>
+      </>
+    )
+    : (user?.role === "Administrator") ? (
+      <>
+        <section>
+          <h1>Admin Dashboard</h1>
+          {!profiles.length && <button onClick={() => getProfiles()}>Get User Profiles</button>}
+          {errorMessage ? <p>Sorry, there was an issue: {errorMessage}</p>
             : profiles.map((entry) => {
               return <Profile key={entry._id} entry={entry} />
             })
-        }
-      </section>
-    </>
-  ) :
-    <>
-      <section>
-        <h1>403 Forbidden</h1>
-      </section>
-    </>;
+          }
+        </section>
+      </>
+    ) :
+      <>
+        <section>
+          <h1>403 Forbidden</h1>
+        </section>
+      </>;
 };

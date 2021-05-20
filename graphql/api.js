@@ -53,7 +53,10 @@ export const getProfileByEmail = async (email) => {
 
   const data = await res.json();
 
-  return data;
+  return {
+    data: getData(data),
+    errorMessage: getErrorMessage(null, data)
+  };
 }
 
 export const createAccount = async (email, name, company, role, date, type, notes) => {
@@ -101,9 +104,13 @@ export const createAccount = async (email, name, company, role, date, type, note
       variables: { email, name, company, role, date, type, notes},
     }),
   });
+
   const data = await res.json();
 
-  return data;
+  return {
+    data: getData(data),
+    errorMessage: getErrorMessage(null, data)
+  };
 };
 
 export const allProfilesInfo = async () => {
@@ -144,6 +151,7 @@ export const allProfilesInfo = async () => {
       query
     }),
   });
+
   const data = await res.json();
 
   return {
