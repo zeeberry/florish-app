@@ -8,6 +8,7 @@ const getInterviews = (applications) => {
     const nextInterview = application.interviews.data.length - 1;
     const interview = {
       _id: application.interviews.data[nextInterview]._id,
+      application_id: application._id,
       company: application.company,
       role: application.role,
       type: application.interviews.data[nextInterview].type,
@@ -28,11 +29,11 @@ export default function Profile({ entry }) {
     toast.error(`Error sending email: ${status} ${error}`);
   };
 
-  const sendEmail = async (email) => {
+  const sendEmail = async (email, application_id, company) => {
     const result = await fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email })
+      body: JSON.stringify({ email: email, application_id: application_id, company: company })
     });
     if(result.status === 200){
       showEmailSuccessToast();
@@ -51,15 +52,17 @@ export default function Profile({ entry }) {
         {getInterviews(entry.applications.data).map((interview) => {
           return (
             <div key={interview._id}>
-              <p>Company: {interview.company}</p>
-              <p>Role: {interview.role}</p>
-              <p>Type: {interview.type}</p>
-              <p>Date: {interview.date}</p>
+              <div>
+                <p>Company: {interview.company}</p>
+                <p>Role: {interview.role}</p>
+                <p>Type: {interview.type}</p>
+                <p>Date: {interview.date}</p>
+              </div>
+              <button style={{ 'marginBottom': '1em' }} onClick={() => sendEmail(entry.account.email, interview.application_id, interview.company)}>Send Email</button>
             </div>
           )
         })}
       </div>
-      <button style={{ 'marginBottom': '1em' }} onClick={() => sendEmail(entry.account.email)}>Send Email</button>
     </div>
   )
 };

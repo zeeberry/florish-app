@@ -101,7 +101,7 @@ export const createAccount = async (email, name, company, role, date, type, note
     },
     body: JSON.stringify({
       query,
-      variables: { email, name, company, role, date, type, notes},
+      variables: { email, name, company, role, date, type, notes },
     }),
   });
 
@@ -149,6 +149,103 @@ export const allProfilesInfo = async () => {
     },
     body: JSON.stringify({
       query
+    }),
+  });
+
+  const data = await res.json();
+
+  return {
+    data: getData(data),
+    errorMessage: getErrorMessage(null, data)
+  };
+};
+
+export const allApplicationsInfo = async () => {
+  const query = `query allApplicationsInfo {
+    allApplicationsInfo(_size: 8) {
+      data {
+        _id
+        company
+      }
+    }
+  }`;
+
+  const res = await fetch(process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
+      'Content-type': 'application/json',
+      Accept: 'application/json'
+    },
+    body: JSON.stringify({
+      query
+    })
+  });
+
+  const data = await res.json();
+
+  return {
+    data: getData(data),
+    errorMessage: getErrorMessage(null, data)
+  };
+};
+
+export const findApplicationByID = async (id) => {
+  const query = `query findApplicationByID($id: ID!){
+    findApplicationByID(id: $id){
+      company
+      role
+      profile {
+        name
+        account{
+          email
+        }
+      }
+    }
+  }`;
+
+  const res = await fetch(process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      query,
+      variables: { id }
+    }),
+  });
+
+  const data = await res.json();
+
+  return {
+    data: getData(data),
+    errorMessage: getErrorMessage(null, data)
+  };
+};
+
+export const updateApplication = async (id, company, role, currentExcitement) => {
+  const query = `mutation updateApplication($id: ID!, $company: String!, $role: String!, $currentExcitement: Int!) {
+    updateApplication(id: $id, data:{
+      company: $company
+      role: $role
+      currentExcitment: $currentExcitement
+      }){
+        currentExcitment
+  		}
+}`;
+
+  const res = await fetch(process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      query,
+      variables: { id, company, role, currentExcitement },
     }),
   });
 
