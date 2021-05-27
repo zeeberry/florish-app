@@ -29,6 +29,8 @@ export default function Dashboard() {
   const interviewDate = 'June 11 2021 @ 12pm ET';
   const interviewType = 'Technical Interview';
   const role = 'Software Engineer';
+  const excitement = '2';
+  const nerves = '2';
 
   useEffect(() => {
     if (!profile.length) {
@@ -48,6 +50,8 @@ export default function Dashboard() {
         <b>{interviewType}</b>
         <div>Interview date: {interviewDate}</div>
         <div>NOTES</div>
+        <div>Excitement: {excitement}</div>
+        <div>Nerves: {nerves}</div>
         <textarea/>
       </Content>
   );
