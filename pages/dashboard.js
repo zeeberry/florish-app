@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useContext } from 'react';
 import useUser from '../hooks/useUser';
-import { getProfileByEmail } from '../graphql/api';
+import { accountByEmail } from '../graphql/api';
 import Context from '../store/context';
 import ApplicationList from '../components/dashboard/applicationList';
 import InterviewList from '../components/dashboard/interviewList';
@@ -13,46 +13,79 @@ const Content = styled.div`
   width: 100%;
 `;
 
-const getProfile = (data) => {
-  return data ? data.accountByEmail.data : [];
-}
-
 export default function Dashboard() {
   const user = useUser({ redirectTo: '/signup', redirectIfFound: false });
-  const { data, errorMessage } = getProfileByEmail('khobra.z@gmail.com');
-  const [ profile, setProfile ] = useState([]);
+  const [profile, setProfile] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [applications, setApplications] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
   const { state } = useContext(Context);
 
-  const name = 'Zainab Ebrahimi';
-  const email = 'khobra.z@gmail.com';
-  const company = 'Tall Poppy';
-  const interviewDate = 'June 11 2021 @ 12pm ET';
-  const interviewType = 'Technical Interview';
-  const role = 'Software Engineer';
-  const excitement = '2';
-  const nerves = '2';
-
   useEffect(() => {
-    if (!profile.length) {
-      setProfile(getProfile(data))
+    async function fetchAccount() {
+      if (user?.email && !profile) {
+        const { data, errorMessage } = await accountByEmail(user.email);
+        const account = data ? data.accountByEmail.data[0] : null;
+        if (account) {
+          setProfile(account.profile);
+          setEmail(account.email);
+          setApplications(account.profile.applications.data);
+        }
+        if (errorMessage) {
+          setErrorMessage(errorMessage);
+        }
+      }
     }
-  }, [data, profile.length]);
+    fetchAccount();
+  }, [user, profile]);
 
-  return (
-      <Content>
-        <div>Name: {name}</div>
-        <div>Email: {email}</div>
-        <hr /> 
-        <h3>Company</h3>
-        <div>{company}</div>
-        <div>{role}</div>
-        <h3>Interviews</h3>
-        <b>{interviewType}</b>
-        <div>Interview date: {interviewDate}</div>
-        <div>NOTES</div>
-        <div>Excitement: {excitement}</div>
-        <div>Nerves: {nerves}</div>
-        <textarea/>
-      </Content>
-  );
+  return (user === undefined) ?
+    (
+      <>
+        <section>
+          <h1>Loading Dashboard...</h1>
+        </section>
+      </>
+    )
+    : (user !== null) ?
+      (
+        <>
+          {errorMessage &&
+              <section>
+                <h1>Sorry, there was an error: {errorMessage}</h1>
+              </section>}
+
+          {profile &&
+            <Content>
+              <div>Name: {profile.name}</div>
+              <div>Email: {email}</div>
+              <hr />
+              {applications.map((entry) => {
+                return (
+                  <div key={entry._id}>
+                    <div>{entry.company}</div>
+                    <div>Role: {entry.role}</div>
+                    <p>Interviews with {entry.company}:</p>
+                    {entry.interviews.data.map((interview, index) => {
+                      return (
+                        <div key={interview._id}>
+                          <div>Round: {interview.type}</div>
+                          <div>Date: {interview.date}</div>
+                          <div>Nerves: {interview.nerves}</div>
+                          <div>Excitement: {interview.excitement}</div>
+                        </div>
+                      )
+                    })}
+                    <hr />
+                  </div>)
+              })}
+            </Content>}
+        </>
+      )
+      :
+      <>
+        <section>
+          <h1>403 Forbidden</h1>
+        </section>
+      </>;
 };

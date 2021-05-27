@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useContext } from 'react';
 import useUser from '../hooks/useUser';
-import { getProfileByEmail } from '../graphql/api';
+import { accountByEmail } from '../graphql/api';
 import Context from '../store/context';
 import ApplicationList from '../components/dashboard/applicationList';
 import InterviewList from '../components/dashboard/interviewList';
@@ -21,7 +21,7 @@ const getProfile = (data) => {
 export default function Dashboard() {
   useUser({ redirectTo: '/signup', redirectIfFound: false });
 
-  const { data, errorMessage } = getProfileByEmail('zainab@florish.tech');
+  const { data, errorMessage } = accountByEmail('zainab@florish.tech');
   const [ profile, setProfile ] = useState([]);
   const { state } = useContext(Context);
   const applications = ['Nike', 'Stash'];

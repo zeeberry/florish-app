@@ -11,7 +11,7 @@ function getErrorMessage(error, data) {
   return null
 }
 
-export const getProfileByEmail = async (email) => {
+export const accountByEmail = async (email) => {
   const query = `query AccountByEmail($email: String!) {
     accountByEmail(email: $email) {
       data {
@@ -23,11 +23,16 @@ export const getProfileByEmail = async (email) => {
           name
           applications {
             data {
+              _id
               company
               role
               interviews {
                 data {
+                  _id
+                  date
                   type
+                  nerves
+                  excitement
                 }  
               }
             }
