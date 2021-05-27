@@ -2,8 +2,8 @@ import { sendEmailAdminDashboard } from '../../sendgrid/sendgrid';
 
 export default async (req, res) => {
     if(req.method === 'POST') {
-      const { email } = req.body;
-      const result = await sendEmailAdminDashboard(email);
+      const { email, application_id, company } = req.body;
+      const result = await sendEmailAdminDashboard(email, application_id, company, req.headers.origin);
       if(result === 'Email sent!'){
         return res.status(200).end();
       }
