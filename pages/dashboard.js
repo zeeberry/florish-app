@@ -37,23 +37,21 @@ export default function Dashboard() {
       }
     }
     fetchAccount();
-  }, [user, profile]);
+  }, [user]);
 
   return (user === undefined) ?
     (
-      <>
-        <section>
-          <h1>Loading Dashboard...</h1>
-        </section>
-      </>
+      <section>
+        <h1>Loading Dashboard...</h1>
+      </section>
     )
     : (user !== null) ?
       (
         <>
           {errorMessage &&
-              <section>
-                <h1>Sorry, there was an error: {errorMessage}</h1>
-              </section>}
+            <section>
+              <h1>Sorry, there was an error: {errorMessage}</h1>
+            </section>}
 
           {profile &&
             <Content>
@@ -83,9 +81,7 @@ export default function Dashboard() {
         </>
       )
       :
-      <>
-        <section>
-          <h1>403 Forbidden</h1>
-        </section>
-      </>;
+      <section>
+        <h1>403 Forbidden</h1>
+      </section>;
 };
