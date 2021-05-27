@@ -9,6 +9,7 @@ import InterviewList from '../components/dashboard/interviewList';
 import InterviewOverview from '../components/dashboard/interviewOverview';
 
 const Content = styled.div`
+  display: flex;
   min-height: 100vh;
   width: 100%;
 `;
@@ -18,17 +19,14 @@ const getProfile = (data) => {
 }
 
 export default function Dashboard() {
-  const user = useUser({ redirectTo: '/signup', redirectIfFound: false });
-  const { data, errorMessage } = getProfileByEmail('khobra.z@gmail.com');
+  useUser({ redirectTo: '/signup', redirectIfFound: false });
+
+  const { data, errorMessage } = getProfileByEmail('zainab@florish.tech');
   const [ profile, setProfile ] = useState([]);
   const { state } = useContext(Context);
-
-  const name = 'Zainab Ebrahimi';
-  const email = 'khobra.z@gmail.com';
-  const company = 'Tall Poppy';
-  const interviewDate = 'June 11 2021 @ 12pm ET';
-  const interviewType = 'Technical Interview';
-  const role = 'Software Engineer';
+  const applications = ['Nike', 'Stash'];
+  const selected = 'Nike';
+  const interviews = ['Recruiter Call', 'Technical Challenge'];
 
   useEffect(() => {
     if (!profile.length) {
@@ -38,17 +36,9 @@ export default function Dashboard() {
 
   return (
       <Content>
-        <div>Name: {name}</div>
-        <div>Email: {email}</div>
-        <hr /> 
-        <h3>Company</h3>
-        <div>{company}</div>
-        <div>{role}</div>
-        <h3>Interviews</h3>
-        <b>{interviewType}</b>
-        <div>Interview date: {interviewDate}</div>
-        <div>NOTES</div>
-        <textarea/>
+        <ApplicationList applications={applications} selected={selected}/>
+        <InterviewList interviews={interviews} company={selected} />
+        <InterviewOverview interview='Recruiter Call'/>
       </Content>
   );
 };
