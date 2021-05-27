@@ -232,9 +232,9 @@ export const updateApplication = async (id, company, role, currentExcitement) =>
       role: $role
       currentExcitment: $currentExcitement
       }){
-        currentExcitment
-  		}
-}`;
+          currentExcitment
+        }
+  }`;
 
   const res = await fetch(process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT, {
     method: 'POST',
