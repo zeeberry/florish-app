@@ -33,6 +33,7 @@ export const accountByEmail = async (email) => {
                   type
                   nerves
                   excitement
+                  notes
                 }  
               }
             }
@@ -251,6 +252,38 @@ export const updateApplication = async (id, company, role, currentExcitement) =>
     body: JSON.stringify({
       query,
       variables: { id, company, role, currentExcitement },
+    }),
+  });
+
+  const data = await res.json();
+
+  return {
+    data: getData(data),
+    errorMessage: getErrorMessage(null, data)
+  };
+};
+
+export const updateInterviewNotes = async (id, notes, date, type) => {
+  const query = `mutation updateInterviewNotes($id: ID!, $notes: String!, $date: String!, $type: String!) {
+    updateInterview(id: $id, data:{
+      date: $date
+      type: $type
+      notes: $notes
+      }){
+          notes
+        }
+  }`;
+
+  const res = await fetch(process.env.NEXT_PUBLIC_FAUNADB_GRAPHQL_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_FAUNADB_SECRET}`,
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      query,
+      variables: { id, notes, date, type },
     }),
   });
 
