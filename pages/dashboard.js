@@ -34,7 +34,7 @@ export default function Dashboard() {
     if (data?.updateInterview.notes === notes) {
       toast.success("Notes saved! 🚀");
     }
-    if(!!errorMessage) {
+    if(errorMessage) {
       toast.error(`There was an issue saving your notes: ${errorMessage}`);
     }
   };

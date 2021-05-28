@@ -270,7 +270,7 @@ export const updateInterviewNotes = async (id, notes, date, type) => {
       type: $type
       notes: $notes
       }){
-    			notes
+          notes
         }
   }`;
 
