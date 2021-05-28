@@ -35,10 +35,10 @@ export default function Home() {
     if (step + 1 === form.length) {
       const state = context.state;
       const {name, email} = state.user;
-      const {company, role} = state.application;
+      const {company, role, currentExcitement} = state.application;
       const {date, type, notes} = state.interview;
 
-      createAccount(email, name, company, role, date, type, notes)
+      createAccount(email, name, company, role, date, type, notes, currentExcitement)
         .then((data) => {
           console.log(data.data);
         })

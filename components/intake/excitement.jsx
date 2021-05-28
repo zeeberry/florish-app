@@ -7,6 +7,7 @@ const Excitement = ({onClick}) => {
   const company = 'Florish';
   const context = useContext(Context);
   const handleClick = (excitement) => {
+    excitement = options.findIndex(element => element.toLowerCase() === excitement) + 1;
     context.dispatch({
       type: 'application/setExcitement',
       payload: excitement
