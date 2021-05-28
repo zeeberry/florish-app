@@ -15,7 +15,7 @@ type Application {
   company: String!
   role: String!
   initialExcitement: Int  
-  currentExcitment: Int
+  currentExcitement: Int
   interviews: [Interview!] @relation
 }
 

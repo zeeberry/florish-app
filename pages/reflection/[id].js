@@ -11,9 +11,9 @@ export default function ReflectionPage({ id, company, role, name, email }) {
     const options = ['Not at all', 'Not really', 'Meh', 'Somewhat', 'Very'];
 
     const handleClick = async (excitement) => {
-        const curExcitement = options.findIndex(element => element === excitement) + 1;
+        const curExcitement = options.findIndex(element => element.toLowerCase() === excitement) + 1;
         const { data, errorMessage } = await updateApplication(id, company, role, curExcitement);
-        if (data?.updateApplication.currentExcitment === curExcitement) {
+        if (data?.updateApplication.currentExcitement === curExcitement) {
             Router.push('/dashboard');
         }
         else {

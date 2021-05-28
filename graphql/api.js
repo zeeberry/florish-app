@@ -77,7 +77,7 @@ export const createAccount = async (email, name, company, role, date, type, note
               company: $company  
               role: $role
               initialExcitement: 1
-              currentExcitment: 3 
+              currentExcitement: 3 
               interviews: {
                 create: {
                   date: $date 
@@ -236,9 +236,9 @@ export const updateApplication = async (id, company, role, currentExcitement) =>
     updateApplication(id: $id, data:{
       company: $company
       role: $role
-      currentExcitment: $currentExcitement
+      currentExcitement: $currentExcitement
       }){
-          currentExcitment
+          currentExcitement
         }
   }`;
 
