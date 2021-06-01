@@ -85,7 +85,7 @@ export const createAccount = async (email, name, company, role, date, type, note
                   type: $type
                   nerves: 4 
                   notes: $notes
-                  excitement: 2
+                  excitement: $excitement
                 }
               }
             }
