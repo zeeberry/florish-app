@@ -36,9 +36,9 @@ export default function Home() {
       const state = context.state;
       const {name, email} = state.user;
       const {company, role, currentExcitement} = state.application;
-      const {date, type, notes} = state.interview;
+      const {date, type, notes, nerves} = state.interview;
 
-      createAccount(email, name, company, role, date, type, notes, currentExcitement)
+      createAccount(email, name, company, role, date, type, notes, currentExcitement, nerves)
         .then((data) => {
           console.log(data.data);
         })
