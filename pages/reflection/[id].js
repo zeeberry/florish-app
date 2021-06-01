@@ -4,6 +4,7 @@ import MultipleChoice from '../../components/shared/multipleChoice';
 import { allApplicationsInfo, findApplicationByID, updateApplication } from '../../graphql/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getOptionRank } from '../../util/intake';
 
 toast.configure();
 export default function ReflectionPage({ id, company, role, name, email }) {
@@ -11,9 +12,9 @@ export default function ReflectionPage({ id, company, role, name, email }) {
     const options = ['Not at all', 'Not really', 'Meh', 'Somewhat', 'Very'];
 
     const handleClick = async (excitement) => {
-        const curExcitement = options.findIndex(element => element === excitement) + 1;
+        const curExcitement = getOptionRank(options, excitement);
         const { data, errorMessage } = await updateApplication(id, company, role, curExcitement);
-        if (data?.updateApplication.currentExcitment === curExcitement) {
+        if (data?.updateApplication.currentExcitement === curExcitement) {
             Router.push('/dashboard');
         }
         else {
