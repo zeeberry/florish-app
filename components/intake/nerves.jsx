@@ -1,11 +1,13 @@
 import { useContext } from 'react';
 import Context from '../../store/context';
 import MultipleChoice from '../shared/multipleChoice';
+import { getOptionRank } from '../../util/intake';
 
 const Nerves = ({onClick}) => {
-  const options = ['Very','Somewhat', 'Meh', 'Not really', 'Not at all'];
+  const options = ['Not at all', 'Not really', 'Meh', 'Somewhat', 'Very'];
   const context = useContext(Context);
   const handleClick = (nerves) => {
+    nerves = getOptionRank(options, nerves);
     context.dispatch({
       type: 'interview/setNerves',
       payload: nerves

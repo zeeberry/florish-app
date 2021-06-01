@@ -65,8 +65,8 @@ export const accountByEmail = async (email) => {
   };
 }
 
-export const createAccount = async (email, name, company, role, date, type, notes, excitement) => {
-  const query = `mutation CreateAccount($email: String!, $name: String!, $company: String!, $role: String!, $date: String!, $type: String!, $notes: String!, $excitement: Int!) {
+export const createAccount = async (email, name, company, role, date, type, notes, excitement, nerves) => {
+  const query = `mutation CreateAccount($email: String!, $name: String!, $company: String!, $role: String!, $date: String!, $type: String!, $notes: String!, $excitement: Int!, $nerves: Int!) {
     createAccount(data: {
       role: "User"
       email: $email
@@ -83,7 +83,7 @@ export const createAccount = async (email, name, company, role, date, type, note
                 create: {
                   date: $date 
                   type: $type
-                  nerves: 4 
+                  nerves: $nerves
                   notes: $notes
                   excitement: $excitement
                 }
@@ -108,7 +108,7 @@ export const createAccount = async (email, name, company, role, date, type, note
     },
     body: JSON.stringify({
       query,
-      variables: { email, name, company, role, date, type, notes, excitement },
+      variables: { email, name, company, role, date, type, notes, excitement, nerves },
     }),
   });
 
