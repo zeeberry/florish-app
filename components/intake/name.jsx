@@ -15,10 +15,11 @@ const Name = ({onClick}) => {
     <>
       <ShortText
         onClick={handleClick}
-        overline={`Let's get started`}
+        overline={`Hello there 👋`}
         title={`What's your name?`}
         buttonText='Next'
         name='name'
+        label='Name'
       />
     </>
   );

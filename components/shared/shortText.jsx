@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import PropTypes from 'prop-types';
 
-const ShortText = ({onClick, overline, title, buttonText, name}) => {
+const ShortText = ({onClick, overline, title, buttonText, name, label}) => {
   const [text, setText] = useState('');
 
   const onChange = (e) => {
@@ -12,7 +12,8 @@ const ShortText = ({onClick, overline, title, buttonText, name}) => {
     <>
       <p>{overline}</p>
       <h1>{title}</h1>
-      <input type='text' name={name} value={text} onChange={onChange}/>
+      {label && <label for="inputName">{label}</label>}
+      <input id="inputName" type='text' name={name} value={text} onChange={onChange}/>
       <button onClick={() => onClick(text)}>{buttonText}</button>
     </>
   );
@@ -25,7 +26,8 @@ ShortText.propTypes = {
   overline: PropTypes.string,
   title: PropTypes.string,
   buttonText: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
+  label: PropTypes.string,
 };
 
 ShortText.defaultProps = {
@@ -33,5 +35,6 @@ ShortText.defaultProps = {
   overline: '',
   title: '',
   buttonText: '',
-  name: ''
+  name: '',
+  label: ''
 };

@@ -6,7 +6,10 @@ export const Title = styled.h1`
 `;
 
 export const Content = styled.section`
-  width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24em;
 `;
 
 export const Main = styled.main`
