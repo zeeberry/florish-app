@@ -19,8 +19,8 @@ export default function Home() {
   const form = [
     Name,
     Contact,
-    InterviewDate,
     Company,
+    InterviewDate,
     Role,
     Excitement,
     InterviewType,

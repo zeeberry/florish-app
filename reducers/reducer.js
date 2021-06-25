@@ -18,12 +18,13 @@ const reducer = (state, action) => {
         }
       };
     }
-    case 'application/setCompany': {
+    case 'application/setCompanyAndRole': {
       return {
         ...state,
         application: {
           ...state.application,
-          company: action.payload
+          company: action.payload.company,
+          role: action.payload.role
         }
       };
     }

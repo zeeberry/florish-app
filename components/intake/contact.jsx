@@ -1,10 +1,8 @@
-import {useState, useContext} from 'react';
-import {Overline} from '../shared/elements';
+import { useContext } from 'react';
 import Context from '../../store/context';
-import PropTypes from 'prop-types';
+import Email from '../shared/email';
 
-const Email = ({onClick}) => {
-  const [email, setText] = useState('');
+const Contact = ({onClick}) => {
   const context = useContext(Context);
   const handleClick = (email) => {
     context.dispatch({
@@ -13,37 +11,19 @@ const Email = ({onClick}) => {
     });
     onClick();
   };
-
-  const onChange = (e) => {
-    setText(e.target.value);
-  };
-
+  const overline = [`Nice to meet you, ${context.state.user.name}`, `Let's create an account for you, first.`];
   return (
     <>
-      <Overline>Nice to meet you, {context.state.user.name}.</Overline>
-      <Overline>Let's create an account for you, first.</Overline>
-      <h1>What's your email?</h1>
-      <label>Email</label>
-      <input type='email' name='email' value={email} onChange={onChange} required/>
-      <button onClick={handleClick}>Next</button>
+      <Email
+        onClick={handleClick}
+        overline={overline}
+        label='Email'
+        title={`What's your email?`}
+        buttonText='Create Account'
+        name='email'
+      />
     </>
   );
 };
 
-export default Email;
-
-Email.propTypes = {
-  onClick: PropTypes.func,
-  overline: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string,
-  buttonText: PropTypes.string,
-  name: PropTypes.string
-};
-
-Email.defaultProps = {
-  onClick: () => {},
-  overline: '',
-  title: '',
-  buttonText: '',
-  name: ''
-};
+export default Contact;

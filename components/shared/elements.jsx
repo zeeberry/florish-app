@@ -54,4 +54,5 @@ export const DashboardHeader = styled.div`
 
 export const Overline = styled.p`
   margin: 0.2em 0;
+  text-align: center;
 `;

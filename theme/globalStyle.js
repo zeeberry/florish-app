@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
 
   label {
     align-self: baseline;
-    margin-bottom: 0.5em;
+    margin: 1em 0 0.5em;
   }
 
   input:not([type=radio]),
