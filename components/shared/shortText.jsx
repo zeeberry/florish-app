@@ -12,7 +12,7 @@ const ShortText = ({onClick, overline, title, buttonText, name, label}) => {
     <>
       <p>{overline}</p>
       <h1>{title}</h1>
-      {label && <label for="inputName">{label}</label>}
+      {label && <label htmlFor="inputName">{label}</label>}
       <input id="inputName" type='text' name={name} value={text} onChange={onChange}/>
       <button onClick={() => onClick(text)}>{buttonText}</button>
     </>
