@@ -51,3 +51,7 @@ export const DashboardHeader = styled.div`
   height: 60px;
   border-bottom: 1px solid ${(props) => props.theme[props.color]};
 `;
+
+export const Overline = styled.p`
+  margin: 0.2em 0;
+`;

@@ -18,13 +18,13 @@ export default function Home() {
   const context = useContext(Context);
   const form = [
     Name,
+    Contact,
     InterviewDate,
     Company,
     Role,
     Excitement,
     InterviewType,
     Nerves,
-    Contact,
     Outro
   ];
   const FormStep = form[step];
