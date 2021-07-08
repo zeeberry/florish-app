@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Intro from '../components/intake/intro';
 import Name from '../components/intake/name';
 import InterviewDate from '../components/intake/interviewDate';
 import Company from '../components/intake/company';
@@ -18,15 +17,14 @@ export default function Home() {
   const [step, setStep] = useState(0);
   const context = useContext(Context);
   const form = [
-    Intro, 
     Name,
-    InterviewDate,
+    Contact,
     Company,
+    InterviewDate,
     Role,
     Excitement,
     InterviewType,
     Nerves,
-    Contact,
     Outro
   ];
   const FormStep = form[step];

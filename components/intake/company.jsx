@@ -1,24 +1,32 @@
 import { useContext } from 'react';
 import Context from '../../store/context';
-import ShortText from '../shared/shortText';
+import DoubleInput from '../shared/doubleInput';
 
 const Company = ({onClick}) => {
   const context = useContext(Context);
-  const handleClick = (company) => {
+  const handleClick = (values) => {
     context.dispatch({
-      type: 'application/setCompany',
-      payload: company
+      type: 'application/setCompanyAndRole',
+      payload: values
     });
     onClick();
   };
+  const inputs = [{
+    label: 'Company',
+    name: 'company'
+  },
+  {
+    label: 'Role',
+    name: 'role'
+  }];
   return (
     <>
-      <ShortText
+      <DoubleInput
         onClick={handleClick}
-        overline='Got it'
-        title='What company are you interviewing with?'
-        buttonText='Next'
-        name='company'
+        overline={['Sweet, your account has been created successfully.','Now, let’s get some information about your upcoming interview.']}
+        title= 'What role and company are you applying for?'
+        buttonText= 'Next'
+        inputs={inputs}
       />
     </>
   );

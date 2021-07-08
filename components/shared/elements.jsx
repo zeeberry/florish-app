@@ -6,7 +6,10 @@ export const Title = styled.h1`
 `;
 
 export const Content = styled.section`
-  width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24em;
 `;
 
 export const Main = styled.main`
@@ -47,4 +50,9 @@ export const DashboardHeader = styled.div`
   padding: 1em;
   height: 60px;
   border-bottom: 1px solid ${(props) => props.theme[props.color]};
+`;
+
+export const Overline = styled.p`
+  margin: 0.2em 0;
+  text-align: center;
 `;

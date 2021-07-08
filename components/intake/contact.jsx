@@ -11,13 +11,15 @@ const Contact = ({onClick}) => {
     });
     onClick();
   };
+  const overline = [`Nice to meet you, ${context.state.user.name}`, `Let's create an account for you, first.`];
   return (
     <>
       <Email
         onClick={handleClick}
-        overline='Almost done.'
-        title='What email shall we reach out to you?'
-        buttonText='Next'
+        overline={overline}
+        label='Email'
+        title={`What's your email?`}
+        buttonText='Create Account'
         name='email'
       />
     </>
